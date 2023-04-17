@@ -30,6 +30,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  # Modules / Modularisasi
+  movie:
+    path: modules/movie
+
+  core:
+    path: modules/core
+
+
   cached_network_image:
   dartz:
   equatable:
@@ -57,7 +66,6 @@ dev_dependencies:
   mocktail:
   build_runner:
   bloc_test:
-  integration_test:
   flutter_lints: ^2.0.0
 
 flutter:

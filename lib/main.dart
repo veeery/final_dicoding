@@ -1,11 +1,10 @@
-import 'package:dicoding_final_ditonton/common/SSL/ssl_pinning.dart';
-import 'package:dicoding_final_ditonton/common/app_overlay.dart';
-import 'package:dicoding_final_ditonton/common/responsive.dart';
-import 'package:dicoding_final_ditonton/presentation/bloc/movie/now_playing/now_playing_movies_bloc.dart';
-import 'package:dicoding_final_ditonton/presentation/pages/app_routes.dart';
-import 'package:dicoding_final_ditonton/presentation/pages/movie/movie_home_page.dart';
+
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie/presentation/bloc/now_playing/now_playing_movies_bloc.dart';
+import 'package:movie/presentation/pages/movie_home_page.dart';
+import 'package:movie/presentation/pages/now_playing_movies_page.dart';
 
 import 'injection.dart' as di;
 
@@ -43,7 +42,14 @@ class MyApp extends StatelessWidget {
           },
           title: 'Flutter Ditonton',
           initialRoute: MovieHomePage.routeName,
-          onGenerateRoute: (settings) => AppRoutes.appGenerateRoute(settings: settings),
+          onGenerateRoute: (settings) {
+            switch(settings.name) {
+              case MovieHomePage.routeName:
+                return MaterialPageRoute(builder: (_) => MovieHomePage());
+              case NowPlayingMoviesPage.routeName:
+                return MaterialPageRoute(builder: (_) => NowPlayingMoviesPage());
+            }
+          }
         ),
       ),
     );
