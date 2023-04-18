@@ -1,5 +1,5 @@
 
-import 'package:core/domain/entities/movie/movie.dart';
+import 'package:movie/domain/entities/movie.dart';
 
 Movie testMovie = const Movie(
   adult: false,

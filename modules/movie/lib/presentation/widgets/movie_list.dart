@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/common/constants.dart';
 import 'package:core/common/responsive.dart';
-import 'package:core/domain/entities/movie/movie.dart';
 
 import 'package:flutter/material.dart';
+import 'package:movie/domain/entities/movie.dart';
 
 
 class MovieList extends StatelessWidget {

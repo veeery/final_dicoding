@@ -1,5 +1,4 @@
 import 'package:core/common/failure.dart';
-import 'package:core/domain/entities/movie/movie.dart';
 import 'package:dartz/dartz.dart';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -7,6 +6,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'package:bloc_test/bloc_test.dart';
+import 'package:movie/domain/entities/movie.dart';
 import 'package:movie/domain/usecases/get_now_playing_movies.dart';
 import 'package:movie/presentation/bloc/now_playing/now_playing_movies_bloc.dart';
 import '../../../dummy_data/dummy_objects.dart';

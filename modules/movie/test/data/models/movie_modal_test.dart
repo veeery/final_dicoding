@@ -1,7 +1,7 @@
 
 import 'package:movie/data/model/movie_model.dart';
-import 'package:core/domain/entities/movie/movie.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:movie/domain/entities/movie.dart';
 
 void main() {
   MovieModel testMovieModel = const MovieModel(
