@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:core/common/exception.dart';
 import 'package:core/common/failure.dart';
-import 'package:core/data/datasources/movie/movie_remote_data_source.dart';
+import 'package:movie/data/datasources/movie_remote_data_source.dart';
 import 'package:core/domain/entities/movie/movie.dart';
-import 'package:core/domain/repositories/movie_repository.dart';
 import 'package:dartz/dartz.dart';
+import 'package:movie/domain/repositories/movie_repository.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
   final MovieRemoteDataSource remoteDataSource;
@@ -23,4 +23,7 @@ class MovieRepositoryImpl implements MovieRepository {
       return Left(ConnectionFailure());
     }
   }
+
+
+
 }

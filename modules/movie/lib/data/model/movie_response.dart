@@ -1,5 +1,5 @@
 
-import 'package:core/data/models/movie/movie_model.dart';
+import 'package:movie/data/model/movie_model.dart';
 import 'package:equatable/equatable.dart';
 
 class MovieResponse extends Equatable {

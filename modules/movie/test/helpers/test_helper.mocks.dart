@@ -8,14 +8,13 @@ import 'dart:convert' as _i10;
 import 'dart:typed_data' as _i11;
 
 import 'package:core/common/failure.dart' as _i6;
-import 'package:core/data/datasources/movie/movie_remote_data_source.dart'
-    as _i8;
-import 'package:core/data/models/movie/movie_model.dart' as _i9;
 import 'package:core/domain/entities/movie/movie.dart' as _i7;
-import 'package:core/domain/repositories/movie_repository.dart' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:http/http.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:movie/data/datasources/movie_remote_data_source.dart' as _i8;
+import 'package:movie/data/model/movie_model.dart' as _i9;
+import 'package:movie/domain/repositories/movie_repository.dart' as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

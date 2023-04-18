@@ -12,6 +12,7 @@ import 'package:movie/presentation/bloc/now_playing/now_playing_movies_bloc.dart
 import '../../../dummy_data/dummy_objects.dart';
 import 'now_playing_movies_bloc_test.mocks.dart';
 
+
 @GenerateMocks([
   GetNowPlayingMovies,
 ])

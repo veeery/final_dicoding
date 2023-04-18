@@ -1,15 +1,12 @@
 import 'dart:convert';
 
-
-import 'package:core/data/models/movie/movie_model.dart';
-import 'package:core/data/models/movie/movie_response.dart';
+import 'package:movie/data/model/movie_model.dart';
+import 'package:movie/data/model/movie_response.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../json_reader.dart';
-
+import '../../../../core/test/json_reader.dart';
 
 void main() {
-
   MovieModel tMovieModel = const MovieModel(
     adult: false,
     backdropPath: "/path.jpg",
@@ -26,8 +23,7 @@ void main() {
     voteCount: 1,
   );
 
-  final tMovieResponseModel =
-  MovieResponse(movieList: <MovieModel>[tMovieModel]);
+  final tMovieResponseModel = MovieResponse(movieList: <MovieModel>[tMovieModel]);
 
   group('fromJson', () {
     test('should return a valid model from JSON', () async {
@@ -68,5 +64,4 @@ void main() {
       };
     });
   });
-
 }

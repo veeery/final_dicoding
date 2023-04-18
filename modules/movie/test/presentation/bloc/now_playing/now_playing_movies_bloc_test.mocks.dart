@@ -7,9 +7,9 @@ import 'dart:async' as _i5;
 
 import 'package:core/common/failure.dart' as _i6;
 import 'package:core/domain/entities/movie/movie.dart' as _i7;
-import 'package:core/domain/repositories/movie_repository.dart' as _i2;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:movie/domain/repositories/movie_repository.dart' as _i2;
 import 'package:movie/domain/usecases/get_now_playing_movies.dart' as _i4;
 
 // ignore_for_file: type=lint

@@ -4,6 +4,9 @@ import 'package:dartz/dartz.dart';
 
 abstract class MovieRepository {
 
+
   Future<Either<Failure, List<Movie>>> getNowPlayingMovies();
+
+  // Future<Either<Failure, MovieDetail>> getMovieDetail({required int id});
 
 }

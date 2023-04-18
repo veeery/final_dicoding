@@ -2,14 +2,15 @@ import 'dart:io';
 
 import 'package:core/common/exception.dart';
 import 'package:core/common/failure.dart';
-import 'package:core/data/models/movie/movie_model.dart';
-import 'package:core/data/repositories/movie_repository_impl.dart';
+import 'package:movie/data/model/movie_model.dart';
+import 'package:movie/data/repositories/movie_repository_impl.dart';
 import 'package:core/domain/entities/movie/movie.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../helpers/test_helper.mocks.dart';
+
 
 
 

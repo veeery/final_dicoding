@@ -1,17 +1,15 @@
 import 'dart:convert';
 
-
 import 'package:core/common/constants.dart';
 import 'package:core/common/exception.dart';
-import 'package:core/data/datasources/movie/movie_remote_data_source.dart';
-import 'package:core/data/models/movie/movie_response.dart';
+import 'package:movie/data/datasources/movie_remote_data_source.dart';
+import 'package:movie/data/model/movie_response.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../../core/test/json_reader.dart';
 import '../../helpers/test_helper.mocks.dart';
-import '../../json_reader.dart';
-
 
 void main() {
   late MovieRemoteDataSourceImpl dataSource;
@@ -23,8 +21,7 @@ void main() {
   });
 
   group('Get Now Playing Movies', () {
-    final tMovieList =
-        MovieResponse.fromJson(json.decode(readJson('dummy_data/now_playing.json'))).movieList;
+    final tMovieList = MovieResponse.fromJson(json.decode(readJson('dummy_data/now_playing.json'))).movieList;
 
     test('should return list of Movie Model when the response code is 200', () async {
       // arrange
@@ -38,14 +35,12 @@ void main() {
 
     test('should throw a ServerException when the response code is 404 or other', () async {
       // arrange
-      when(mockHttpClient
-          .get(Uri.parse('$BASE_URL/movie/now_playing?$API_KEY')))
+      when(mockHttpClient.get(Uri.parse('$BASE_URL/movie/now_playing?$API_KEY')))
           .thenAnswer((_) async => http.Response('Not Found', 404));
       // act
       final call = dataSource.getNowPlayingMovies();
       // assert
       expect(() => call, throwsA(isA<ServerException>()));
     });
-
   });
 }
