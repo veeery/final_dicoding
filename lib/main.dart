@@ -1,5 +1,6 @@
 import 'package:core/common/app_color.dart';
 import 'package:core/core.dart';
+import 'package:core/presentation/pages/main_page.dart';
 import 'package:dicoding_final_ditonton/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -61,9 +62,13 @@ class MyApp extends StatelessWidget {
               );
             },
             title: 'Flutter Ditonton',
-            initialRoute: MovieHomePage.routeName,
+            initialRoute: MainPage.routeName,
             onGenerateRoute: (settings) {
               switch (settings.name) {
+                // main screen for bottom navigator
+                case MainPage.routeName:
+                  return MaterialPageRoute(builder: (_) => MainPage());
+                // Movie
                 case MovieHomePage.routeName:
                   return MaterialPageRoute(builder: (_) => MovieHomePage());
                 case NowPlayingMoviesPage.routeName:
