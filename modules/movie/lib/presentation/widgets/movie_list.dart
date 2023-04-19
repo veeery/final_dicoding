@@ -4,6 +4,7 @@ import 'package:core/common/responsive.dart';
 
 import 'package:flutter/material.dart';
 import 'package:movie/domain/entities/movie.dart';
+import 'package:movie/presentation/pages/movie_detail_page.dart';
 
 
 class MovieList extends StatelessWidget {
@@ -24,11 +25,11 @@ class MovieList extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 1.w),
             child: InkWell(
               onTap: () {
-                // Navigator.pushNamed(
-                //   context,
-                //   MovieDetailPage.ROUTE_NAME,
-                //   arguments: movie.id,
-                // );
+                Navigator.pushNamed(
+                  context,
+                  MovieDetailPage.ROUTE_NAME,
+                  arguments: movie.id,
+                );
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(1.w)),
