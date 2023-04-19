@@ -1,6 +1,7 @@
-
 import 'package:core/common/app_color.dart';
 import 'package:core/core.dart';
+import 'package:dicoding_final_ditonton/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/movie_detail/movie_detail_bloc.dart';
@@ -15,6 +16,9 @@ import 'injection.dart' as di;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await SSLPinning.init();
 
   di.init();
@@ -42,37 +46,36 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-          theme: ThemeData.dark().copyWith(
-            colorScheme: kColorScheme,
-            primaryColor: kRichBlack,
-            scaffoldBackgroundColor: kRichBlack,
-            textTheme: kTextTheme,
-          ),
-          builder: (context, child) {
-            // initial the responsive
-            AppResponsive.init(context: context);
-            return MediaQuery(
-              data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
-              child: child!,
-            );
-          },
-          title: 'Flutter Ditonton',
-          initialRoute: MovieHomePage.routeName,
-          onGenerateRoute: (settings) {
-            switch(settings.name) {
-              case MovieHomePage.routeName:
-                return MaterialPageRoute(builder: (_) => MovieHomePage());
-              case NowPlayingMoviesPage.routeName:
-                return MaterialPageRoute(builder: (_) => NowPlayingMoviesPage());
-              case MovieDetailPage.ROUTE_NAME:
-                final id = settings.arguments as int;
-                return MaterialPageRoute(
-                  builder: (_) => MovieDetailPage(id: id),
-                  settings: settings,
-                );
-            }
-          }
-        ),
+            theme: ThemeData.dark().copyWith(
+              colorScheme: kColorScheme,
+              primaryColor: kRichBlack,
+              scaffoldBackgroundColor: kRichBlack,
+              textTheme: kTextTheme,
+            ),
+            builder: (context, child) {
+              // initial the responsive
+              AppResponsive.init(context: context);
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+                child: child!,
+              );
+            },
+            title: 'Flutter Ditonton',
+            initialRoute: MovieHomePage.routeName,
+            onGenerateRoute: (settings) {
+              switch (settings.name) {
+                case MovieHomePage.routeName:
+                  return MaterialPageRoute(builder: (_) => MovieHomePage());
+                case NowPlayingMoviesPage.routeName:
+                  return MaterialPageRoute(builder: (_) => NowPlayingMoviesPage());
+                case MovieDetailPage.ROUTE_NAME:
+                  final id = settings.arguments as int;
+                  return MaterialPageRoute(
+                    builder: (_) => MovieDetailPage(id: id),
+                    settings: settings,
+                  );
+              }
+            }),
       ),
     );
   }

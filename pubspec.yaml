@@ -39,6 +39,7 @@ dependencies:
     path: modules/core
 
 
+
   cached_network_image:
   dartz:
   equatable:
@@ -52,6 +53,8 @@ dependencies:
   bloc:
   rxdart:
   firebase_analytics:
+  firebase_core:
+  firebase_crashlytics:
   intl:
 
 
