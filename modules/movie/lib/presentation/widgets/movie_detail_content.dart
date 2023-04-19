@@ -23,6 +23,7 @@ class MovieDetailContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppResponsive.init(context: context);
     return Stack(
       children: <Widget>[
         CachedNetworkImage(
@@ -179,6 +180,7 @@ class MovieDetailContent extends StatelessWidget {
 
   Widget buildRecommendation() {
     return BlocBuilder<MovieRecommendationsBloc, MovieRecommendationsState>(
+      key: const Key('build_movie_recommendations'),
       builder: (context, state) {
         if (state is MovieRecommendationLoading) {
           return const Center(
@@ -188,7 +190,6 @@ class MovieDetailContent extends StatelessWidget {
           if (state.movieRecommendation.isEmpty) {
             return const Text("There's No Recommendation for this Movie");
           }
-
           return Container(
             height: 150,
             child: ListView.builder(

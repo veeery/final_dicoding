@@ -1,5 +1,7 @@
 
+import 'package:core/domain/entities/genre.dart';
 import 'package:movie/domain/entities/movie.dart';
+import 'package:movie/domain/entities/movie_detail.dart';
 
 Movie testMovie = const Movie(
   adult: false,
@@ -19,3 +21,18 @@ Movie testMovie = const Movie(
 );
 
 List<Movie> testMovieList = [testMovie];
+
+final testMovieDetail = MovieDetail(
+  adult: false,
+  backdropPath: 'backdropPath',
+  genres: [Genre(id: 1, name: 'Action')],
+  id: 1,
+  originalTitle: 'originalTitle',
+  overview: 'overview',
+  posterPath: 'posterPath',
+  releaseDate: 'releaseDate',
+  runtime: 120,
+  title: 'title',
+  voteAverage: 1,
+  voteCount: 1,
+);

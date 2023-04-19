@@ -31,14 +31,18 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    AppResponsive.init(context: context);
     return Scaffold(
       body: BlocBuilder<MovieDetailBloc, MovieDetailState>(
         builder: (context, state) {
           if (state is MovieDetailLoading) {
-            return const CircularProgressIndicator();
+            return const Center(
+              child:  CircularProgressIndicator(),
+            );
           } else if (state is MovieDetailLoaded) {
             final movieDetail = state.movieDetail;
             return MovieDetailContent(
+              key: const Key('movie_detail_content'),
               isWatchlist: false,
               movie: movieDetail,
             );
