@@ -10,7 +10,7 @@ import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:movie/domain/entities/movie.dart' as _i7;
 import 'package:movie/domain/repositories/movie_repository.dart' as _i2;
-import 'package:movie/domain/usecases/get_popular_movies.dart' as _i4;
+import 'package:movie/domain/usecases/get_top_rated_movies.dart' as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -44,11 +44,11 @@ class _FakeEither_1<L, R> extends _i1.SmartFake implements _i3.Either<L, R> {
         );
 }
 
-/// A class which mocks [GetPopularMovies].
+/// A class which mocks [GetTopRatedMovies].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetPopularMovies extends _i1.Mock implements _i4.GetPopularMovies {
-  MockGetPopularMovies() {
+class MockGetTopRatedMovies extends _i1.Mock implements _i4.GetTopRatedMovies {
+  MockGetTopRatedMovies() {
     _i1.throwOnMissingStub(this);
   }
 
