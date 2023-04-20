@@ -40,7 +40,7 @@ void main() {
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(makeTestableWidget(NowPlayingMoviesPage()));
+    await tester.pumpWidget(makeTestableWidget(const NowPlayingMoviesPage()));
 
     expect(centerFinder, findsOneWidget);
     expect(progressBarFinder, findsOneWidget);
@@ -51,7 +51,7 @@ void main() {
 
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(makeTestableWidget(NowPlayingMoviesPage()));
+    await tester.pumpWidget(makeTestableWidget(const NowPlayingMoviesPage()));
 
     expect(listViewFinder, findsOneWidget);
   });
@@ -61,7 +61,7 @@ void main() {
 
     final textFinder = find.byKey(const Key('error_message'));
 
-    await tester.pumpWidget(makeTestableWidget(NowPlayingMoviesPage()));
+    await tester.pumpWidget(makeTestableWidget(const NowPlayingMoviesPage()));
 
     expect(textFinder, findsOneWidget);
   });

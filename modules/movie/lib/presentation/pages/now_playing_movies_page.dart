@@ -1,4 +1,3 @@
-
 import 'package:core/common/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,21 +28,13 @@ class _NowPlayingMoviesPageState extends State<NowPlayingMoviesPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Now Playing'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              // Navigator.pushNamed(context, searchMoviesRoute);
-            },
-            icon: const Icon(Icons.search),
-          )
-        ],
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        padding: EdgeInsets.symmetric(horizontal: 3.w),
         child: BlocBuilder<NowPlayingMoviesBloc, NowPlayingMoviesState>(
           builder: (_, state) {
             if (state is NowPlayingMoviesLoading) {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             } else if (state is NowPlayingMoviesLoaded) {
               return ListView.builder(
                 itemCount: state.result.length,

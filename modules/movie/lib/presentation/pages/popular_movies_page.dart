@@ -2,6 +2,7 @@ import 'package:core/common/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/popular_movies/popular_movies_bloc.dart';
+import 'package:movie/presentation/pages/search_movie_page.dart';
 import 'package:movie/presentation/widgets/movie_card_list.dart';
 
 class PopularMoviesPage extends StatefulWidget {
@@ -28,21 +29,13 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Popular Movies'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              // Navigator.pushNamed(context, searchMoviesRoute);
-            },
-            icon: const Icon(Icons.search),
-          )
-        ],
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        padding: EdgeInsets.symmetric(horizontal: 3.w),
         child: BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
           builder: (_, state) {
             if (state is PopularMovieLoading) {
-              return const CircularProgressIndicator();
+              return const Center(child:  CircularProgressIndicator());
             } else if (state is PopularMovieLoaded) {
               return ListView.builder(
                 itemCount: state.result.length,

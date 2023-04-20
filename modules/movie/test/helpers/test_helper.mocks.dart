@@ -165,6 +165,25 @@ class MockMovieRepository extends _i1.Mock implements _i5.MovieRepository {
           ),
         )),
       ) as _i6.Future<_i2.Either<_i7.Failure, List<_i8.Movie>>>);
+  @override
+  _i6.Future<_i2.Either<_i7.Failure, List<_i8.Movie>>> searchMovies(
+          {required String? query}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #searchMovies,
+          [],
+          {#query: query},
+        ),
+        returnValue: _i6.Future<_i2.Either<_i7.Failure, List<_i8.Movie>>>.value(
+            _FakeEither_0<_i7.Failure, List<_i8.Movie>>(
+          this,
+          Invocation.method(
+            #searchMovies,
+            [],
+            {#query: query},
+          ),
+        )),
+      ) as _i6.Future<_i2.Either<_i7.Failure, List<_i8.Movie>>>);
 }
 
 /// A class which mocks [MovieRemoteDataSource].
@@ -230,6 +249,17 @@ class MockMovieRemoteDataSource extends _i1.Mock
           #getMovieRecommendations,
           [],
           {#id: id},
+        ),
+        returnValue:
+            _i6.Future<List<_i11.MovieModel>>.value(<_i11.MovieModel>[]),
+      ) as _i6.Future<List<_i11.MovieModel>>);
+  @override
+  _i6.Future<List<_i11.MovieModel>> searchMovies({required String? query}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #searchMovies,
+          [],
+          {#query: query},
         ),
         returnValue:
             _i6.Future<List<_i11.MovieModel>>.value(<_i11.MovieModel>[]),

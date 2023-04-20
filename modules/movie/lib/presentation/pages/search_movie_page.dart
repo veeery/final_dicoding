@@ -43,7 +43,7 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
               child: BlocBuilder<SearchMoviesBloc, SearchMoviesState>(
                 builder: (context, state) {
                   if (state is SearchMoviesLoading) {
-                    return const CircularProgressIndicator();
+                    return const Center(child: CircularProgressIndicator());
                   } else if (state is SearchMoviesLoaded) {
                     return ListView.builder(
                       itemCount: state.result.length,
