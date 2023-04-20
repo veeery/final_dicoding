@@ -1,25 +1,24 @@
-
 import 'package:core/common/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie/presentation/bloc/now_playing/now_playing_movies_bloc.dart';
+import 'package:movie/presentation/bloc/top_rated/top_rated_movies_bloc.dart';
 import 'package:movie/presentation/widgets/movie_card_list.dart';
 
-class NowPlayingMoviesPage extends StatefulWidget {
-  static const routeName = '/now-playing-movie';
-
-  const NowPlayingMoviesPage({Key? key}) : super(key: key);
+class TopRatedMoviesPage extends StatefulWidget {
+  static const routeName = '/top-rated-movies';
+  const TopRatedMoviesPage({Key? key}) : super(key: key);
 
   @override
-  State<NowPlayingMoviesPage> createState() => _NowPlayingMoviesPageState();
+  State<TopRatedMoviesPage> createState() => _TopRatedMoviesPageState();
 }
 
-class _NowPlayingMoviesPageState extends State<NowPlayingMoviesPage> {
+class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
+
   @override
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<NowPlayingMoviesBloc>().add(const FetchNowPlayingMovies());
+      context.read<TopRatedMoviesBloc>().add(const FetchTopRatedMovies());
     });
   }
 
@@ -28,7 +27,7 @@ class _NowPlayingMoviesPageState extends State<NowPlayingMoviesPage> {
     AppResponsive.init(context: context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Now Playing'),
+        title: const Text('Top Rated'),
         actions: [
           IconButton(
             onPressed: () {
@@ -40,11 +39,11 @@ class _NowPlayingMoviesPageState extends State<NowPlayingMoviesPage> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.w),
-        child: BlocBuilder<NowPlayingMoviesBloc, NowPlayingMoviesState>(
+        child: BlocBuilder<TopRatedMoviesBloc, TopRatedMoviesState>(
           builder: (_, state) {
-            if (state is NowPlayingMoviesLoading) {
+            if (state is TopRatedMoviesLoading) {
               return const CircularProgressIndicator();
-            } else if (state is NowPlayingMoviesLoaded) {
+            } else if (state is TopRatedMoviesLoaded) {
               return ListView.builder(
                 itemCount: state.result.length,
                 itemBuilder: (context, index) {
@@ -53,7 +52,7 @@ class _NowPlayingMoviesPageState extends State<NowPlayingMoviesPage> {
                   // return Text('aw');
                 },
               );
-            } else if (state is NowPlayingMoviesError) {
+            } else if (state is TopRatedMoviesError) {
               return Center(
                 key: const Key('error_message'),
                 child: Text(state.message),

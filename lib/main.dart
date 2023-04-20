@@ -9,10 +9,12 @@ import 'package:movie/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:movie/presentation/bloc/now_playing/now_playing_movies_bloc.dart';
 import 'package:movie/presentation/bloc/popular_movies/popular_movies_bloc.dart';
 import 'package:movie/presentation/bloc/recommendations/movie_recommendations_bloc.dart';
+import 'package:movie/presentation/bloc/top_rated/top_rated_movies_bloc.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
 import 'package:movie/presentation/pages/movie_home_page.dart';
 import 'package:movie/presentation/pages/now_playing_movies_page.dart';
 import 'package:movie/presentation/pages/popular_movies_page.dart';
+import 'package:movie/presentation/pages/top_rated_movies_page.dart';
 
 import 'injection.dart' as di;
 
@@ -50,6 +52,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (_) => di.locator<PopularMoviesBloc>(),
           ),
+          BlocProvider(
+            create: (_) => di.locator<TopRatedMoviesBloc>(),
+          ),
         ],
         child: MaterialApp(
             theme: ThemeData.dark().copyWith(
@@ -72,14 +77,16 @@ class MyApp extends StatelessWidget {
               switch (settings.name) {
                 // main screen for bottom navigator
                 case MainPage.routeName:
-                  return MaterialPageRoute(builder: (_) => MainPage());
+                  return MaterialPageRoute(builder: (_) => const MainPage());
                 // Movie
                 case MovieHomePage.routeName:
-                  return MaterialPageRoute(builder: (_) => MovieHomePage());
+                  return MaterialPageRoute(builder: (_) => const MovieHomePage());
                 case NowPlayingMoviesPage.routeName:
-                  return MaterialPageRoute(builder: (_) => NowPlayingMoviesPage());
+                  return MaterialPageRoute(builder: (_) => const NowPlayingMoviesPage());
                 case PopularMoviesPage.routeName:
-                  return MaterialPageRoute(builder: (_) => PopularMoviesPage());
+                  return MaterialPageRoute(builder: (_) => const PopularMoviesPage());
+                case TopRatedMoviesPage.routeName:
+                  return MaterialPageRoute(builder: (_) => const TopRatedMoviesPage());
                 case MovieDetailPage.ROUTE_NAME:
                   final id = settings.arguments as int;
                   return MaterialPageRoute(

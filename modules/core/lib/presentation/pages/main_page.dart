@@ -8,6 +8,8 @@ import 'package:movie/presentation/pages/movie_home_page.dart';
 class MainPage extends StatefulWidget {
   static const routeName = '/main-page';
 
+  const MainPage({super.key});
+
   @override
   State<MainPage> createState() => _MainPageState();
 }

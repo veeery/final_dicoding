@@ -7,13 +7,12 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  flutter:
+    sdk: flutter
 
   # Module Movie
   movie:
     path: ../movie
-
-  flutter:
-    sdk: flutter
 
   google_fonts:
   equatable:

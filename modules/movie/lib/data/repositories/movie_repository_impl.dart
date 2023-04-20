@@ -61,5 +61,16 @@ class MovieRepositoryImpl implements MovieRepository {
     }
   }
 
+  @override
+  Future<Either<Failure, List<Movie>>> getTopRatedMovies() async {
+    try {
+      final result = await remoteDataSource.getTopRatedMovies();
+      return Right(result.map((model) => model.toEntity()).toList());
+    } on ServerException {
+      return Left(ServerFailure());
+    } on SocketException {
+      return Left(ConnectionFailure());
+    }
+  }
 
 }

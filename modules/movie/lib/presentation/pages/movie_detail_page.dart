@@ -10,7 +10,7 @@ class MovieDetailPage extends StatefulWidget {
 
   final int id;
 
-  MovieDetailPage({required this.id});
+  const MovieDetailPage({super.key, required this.id});
 
   @override
   State<MovieDetailPage> createState() => _MovieDetailPageState();
