@@ -2,6 +2,7 @@ workflows:
   movie:
     name: Unit Testing Movie
     scripts:
-        - echo "Testing"
-        - name: Flutter test
-          script: modules/movie
+      - echo "Testing"
+      - name: Flutter test
+        working_directory: modules/movie
+        script: flutter test
