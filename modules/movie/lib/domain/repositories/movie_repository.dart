@@ -9,4 +9,5 @@ abstract class MovieRepository {
   Future<Either<Failure, List<Movie>>> getTopRatedMovies();
   Future<Either<Failure, MovieDetail>> getMovieDetail({required int id});
   Future<Either<Failure, List<Movie>>> getMovieRecommendations({required int id});
+  Future<Either<Failure, List<Movie>>> searchMovies({required String query});
 }

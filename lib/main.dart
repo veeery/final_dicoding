@@ -9,11 +9,13 @@ import 'package:movie/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:movie/presentation/bloc/now_playing/now_playing_movies_bloc.dart';
 import 'package:movie/presentation/bloc/popular_movies/popular_movies_bloc.dart';
 import 'package:movie/presentation/bloc/recommendations/movie_recommendations_bloc.dart';
+import 'package:movie/presentation/bloc/search_movies/search_movies_bloc.dart';
 import 'package:movie/presentation/bloc/top_rated/top_rated_movies_bloc.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
 import 'package:movie/presentation/pages/movie_home_page.dart';
 import 'package:movie/presentation/pages/now_playing_movies_page.dart';
 import 'package:movie/presentation/pages/popular_movies_page.dart';
+import 'package:movie/presentation/pages/search_movie_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
 
 import 'injection.dart' as di;
@@ -55,6 +57,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (_) => di.locator<TopRatedMoviesBloc>(),
           ),
+          BlocProvider(
+            create: (_) => di.locator<SearchMoviesBloc>(),
+          ),
         ],
         child: MaterialApp(
             theme: ThemeData.dark().copyWith(
@@ -87,6 +92,8 @@ class MyApp extends StatelessWidget {
                   return MaterialPageRoute(builder: (_) => const PopularMoviesPage());
                 case TopRatedMoviesPage.routeName:
                   return MaterialPageRoute(builder: (_) => const TopRatedMoviesPage());
+                case SearchMoviePage.routeName:
+                  return MaterialPageRoute(builder: (_) => const SearchMoviePage());
                 case MovieDetailPage.ROUTE_NAME:
                   final id = settings.arguments as int;
                   return MaterialPageRoute(

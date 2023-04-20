@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core/common/app_curve_size.dart';
 import 'package:core/common/app_text_style.dart';
 import 'package:core/common/constants.dart';
 import 'package:core/common/responsive.dart';
@@ -14,14 +15,14 @@ class MovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // margin: const EdgeInsets.symmetric(vertical: 4),
+      margin: EdgeInsets.symmetric(vertical: 1.h),
       child: InkWell(
         onTap: () {
-          // Navigator.pushNamed(
-          //   context,
-          //   MovieDetailPage.ROUTE_NAME,
-          //   arguments: movie.id,
-          // );
+          Navigator.pushNamed(
+            context,
+            MovieDetailPage.ROUTE_NAME,
+            arguments: movie.id,
+          );
         },
         child: Stack(
           alignment: Alignment.bottomLeft,
@@ -42,7 +43,7 @@ class MovieCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
-                    SizedBox(height: 16),
+                    SizedBox(height: 3.h),
                     Text(
                       movie.overview ?? '-',
                       maxLines: 2,
@@ -58,7 +59,7 @@ class MovieCard extends StatelessWidget {
                 bottom: 3.w,
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(3.w)),
+                borderRadius: BorderRadius.all(Radius.circular(CurveSize.smallCurve)),
                 child: CachedNetworkImage(
                   imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
                   width: 25.w,

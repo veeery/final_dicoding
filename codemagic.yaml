@@ -9,7 +9,7 @@ workflows:
         script: flutter pub get
       - name: Testing for Modularization Movie
         working_directory: modules/movie
-        script: flutter test
+        script: flutter test --machine
       - name: Building Android
         script: flutter build appbundle --release
       - name: Building iOS

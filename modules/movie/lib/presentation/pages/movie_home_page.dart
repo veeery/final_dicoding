@@ -5,6 +5,7 @@ import 'package:movie/presentation/bloc/popular_movies/popular_movies_bloc.dart'
 import 'package:movie/presentation/bloc/top_rated/top_rated_movies_bloc.dart';
 import 'package:movie/presentation/pages/now_playing_movies_page.dart';
 import 'package:movie/presentation/pages/popular_movies_page.dart';
+import 'package:movie/presentation/pages/search_movie_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
 import 'package:movie/presentation/widgets/app_heading.dart';
 import 'package:movie/presentation/widgets/movie_list.dart';
@@ -41,7 +42,7 @@ class _MovieHomePageState extends State<MovieHomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              // Navigator.pushNamed(context, searchMoviesRoute);
+              Navigator.pushNamed(context, SearchMoviePage.routeName);
             },
             icon: const Icon(Icons.search),
           )
