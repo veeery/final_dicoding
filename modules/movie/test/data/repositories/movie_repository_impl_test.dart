@@ -228,4 +228,40 @@ void main() {
       expect(result, Left(ConnectionFailure()));
     });
   });
+
+  group('Top Rated Movies', () {
+
+    final tMovieModelList = <MovieModel>[tMovieModel];
+    final tMovieList = <Movie>[tMovie];
+
+    test('should return movie list when call to data source is successful', () async {
+      // arrange
+      when(mockMovieRemoteDataSource.getTopRatedMovies()).thenAnswer((_) async => tMovieModelList);
+      // act
+      final result = await repository.getTopRatedMovies();
+      // assert
+      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
+      final resultList = result.getOrElse(() => []);
+      expect(resultList, tMovieList);
+    });
+
+    test('should return ServerFailure when call to data source is unsuccessful', () async {
+      // arrange
+      when(mockMovieRemoteDataSource.getTopRatedMovies()).thenThrow(ServerException());
+      // act
+      final result = await repository.getTopRatedMovies();
+      // assert
+      expect(result, Left(ServerFailure()));
+    });
+
+    test('should return ConnectionFailure when device is not connected to the internet', () async {
+      // arrange
+      when(mockMovieRemoteDataSource.getTopRatedMovies()).thenThrow(SocketException('Failed to connect to the network'));
+      // act
+      final result = await repository.getTopRatedMovies();
+      // assert
+      expect(result, Left(ConnectionFailure()));
+    });
+  });
+
 }

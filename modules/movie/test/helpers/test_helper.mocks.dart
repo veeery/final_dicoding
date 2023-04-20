@@ -112,6 +112,22 @@ class MockMovieRepository extends _i1.Mock implements _i5.MovieRepository {
         )),
       ) as _i6.Future<_i2.Either<_i7.Failure, List<_i8.Movie>>>);
   @override
+  _i6.Future<_i2.Either<_i7.Failure, List<_i8.Movie>>> getTopRatedMovies() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTopRatedMovies,
+          [],
+        ),
+        returnValue: _i6.Future<_i2.Either<_i7.Failure, List<_i8.Movie>>>.value(
+            _FakeEither_0<_i7.Failure, List<_i8.Movie>>(
+          this,
+          Invocation.method(
+            #getTopRatedMovies,
+            [],
+          ),
+        )),
+      ) as _i6.Future<_i2.Either<_i7.Failure, List<_i8.Movie>>>);
+  @override
   _i6.Future<_i2.Either<_i7.Failure, _i9.MovieDetail>> getMovieDetail(
           {required int? id}) =>
       (super.noSuchMethod(
@@ -174,6 +190,15 @@ class MockMovieRemoteDataSource extends _i1.Mock
   _i6.Future<List<_i11.MovieModel>> getPopularMovies() => (super.noSuchMethod(
         Invocation.method(
           #getPopularMovies,
+          [],
+        ),
+        returnValue:
+            _i6.Future<List<_i11.MovieModel>>.value(<_i11.MovieModel>[]),
+      ) as _i6.Future<List<_i11.MovieModel>>);
+  @override
+  _i6.Future<List<_i11.MovieModel>> getTopRatedMovies() => (super.noSuchMethod(
+        Invocation.method(
+          #getTopRatedMovies,
           [],
         ),
         returnValue:
