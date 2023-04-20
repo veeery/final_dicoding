@@ -4,4 +4,4 @@ workflows:
     scripts:
         - echo "Testing"
         - name: Flutter test
-          script: modules/movie/flutter test
+          script: modules/movie
