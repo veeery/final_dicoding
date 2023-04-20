@@ -1,8 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/now_playing/now_playing_movies_bloc.dart';
+import 'package:movie/presentation/bloc/popular_movies/popular_movies_bloc.dart';
 import 'package:movie/presentation/pages/now_playing_movies_page.dart';
+import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:movie/presentation/widgets/app_heading.dart';
 import 'package:movie/presentation/widgets/movie_list.dart';
 
@@ -19,6 +20,9 @@ class _MovieHomePageState extends State<MovieHomePage> {
     super.initState();
     Future.microtask(() {
       context.read<NowPlayingMoviesBloc>().add(const FetchNowPlayingMovies());
+    });
+    Future.microtask(() {
+      context.read<PopularMoviesBloc>().add(const FetchPopularMovies());
     });
   }
 
@@ -61,6 +65,29 @@ class _MovieHomePageState extends State<MovieHomePage> {
               },
             ),
           ),
+          AppHeading(
+            title: 'Popular Movies',
+            onTap: () => Navigator.pushNamed(context, PopularMoviesPage.routeName),
+            child: BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
+              builder: (context, state) {
+                if (state is PopularMovieLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is PopularMovieLoaded) {
+                  return MovieList(movies: state.result);
+                } else if (state is PopularMovieError) {
+                  return Center(
+                    child: Text(state.message),
+                  );
+                } else {
+                  return const Center(
+                    child: Text('Unknown Error'),
+                  );
+                }
+              },
+            ),
+          )
         ],
       ),
     );

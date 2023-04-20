@@ -7,10 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:movie/presentation/bloc/now_playing/now_playing_movies_bloc.dart';
+import 'package:movie/presentation/bloc/popular_movies/popular_movies_bloc.dart';
 import 'package:movie/presentation/bloc/recommendations/movie_recommendations_bloc.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
 import 'package:movie/presentation/pages/movie_home_page.dart';
 import 'package:movie/presentation/pages/now_playing_movies_page.dart';
+import 'package:movie/presentation/pages/popular_movies_page.dart';
 
 import 'injection.dart' as di;
 
@@ -45,6 +47,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (_) => di.locator<MovieRecommendationsBloc>(),
           ),
+          BlocProvider(
+            create: (_) => di.locator<PopularMoviesBloc>(),
+          ),
         ],
         child: MaterialApp(
             theme: ThemeData.dark().copyWith(
@@ -73,6 +78,8 @@ class MyApp extends StatelessWidget {
                   return MaterialPageRoute(builder: (_) => MovieHomePage());
                 case NowPlayingMoviesPage.routeName:
                   return MaterialPageRoute(builder: (_) => NowPlayingMoviesPage());
+                case PopularMoviesPage.routeName:
+                  return MaterialPageRoute(builder: (_) => PopularMoviesPage());
                 case MovieDetailPage.ROUTE_NAME:
                   final id = settings.arguments as int;
                   return MaterialPageRoute(
