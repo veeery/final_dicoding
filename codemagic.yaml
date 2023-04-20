@@ -2,12 +2,18 @@ workflows:
   movie:
     name: Unit Testing
     instance_type: mac_mini_m1
+    environment:
+      flutter: stable
     scripts:
+      - name: Installing dependencies
+        script: flutter pub get
       - name: Testing for Modularization Movie
         working_directory: modules/movie
-        script: flutter test --machine
-      - name: Building Android Release Mode
-        script: flutter build apk --release
+        script: flutter test
+      - name: Building Android
+        script: flutter build appbundle --release
+      - name: Building iOS
+        script: flutter build ios --release --no-codesign
     artifacts:
       - build/**/outputs/apk/**/*.apk
       - build/**/outputs/**/*.aab
