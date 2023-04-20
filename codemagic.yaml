@@ -1,10 +1,15 @@
 workflows:
   movie:
     name: Unit Testing
+    instance_type: mac_mini_m2
     scripts:
-      - name: Flutter test
+      - name: Testing for Modularization Movie
         working_directory: modules/movie
-        script: flutter test
+        script: flutter test --machine
+      - name: Building Android Release Mode
+        script: flutter build apk --release
+      - name: Building iOS Release Mode
+        script: flutter build ios
     triggering:
       events:
         - push
