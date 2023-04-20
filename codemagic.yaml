@@ -1,7 +1,7 @@
 workflows:
   movie:
     name: Unit Testing
-    instance_type: mac_mini_m2
+    instance_type: mac_mini_m1
     scripts:
       - name: Testing for Modularization Movie
         working_directory: modules/movie
