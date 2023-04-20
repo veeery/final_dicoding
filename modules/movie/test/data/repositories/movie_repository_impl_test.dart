@@ -14,9 +14,6 @@ import 'package:movie/domain/entities/movie.dart';
 import '../../dummy_data/dummy_objects.dart';
 import '../../helpers/test_helper.mocks.dart';
 
-
-
-
 void main() {
   late MovieRepositoryImpl repository;
   late MockMovieRemoteDataSource mockMovieRemoteDataSource;
@@ -35,7 +32,7 @@ void main() {
     id: 557,
     originalTitle: 'Spider-Man',
     overview:
-    'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
+        'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
     popularity: 60.441,
     posterPath: '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
     releaseDate: '2002-05-01',
@@ -45,7 +42,6 @@ void main() {
     voteCount: 13507,
   );
 
-
   const tMovie = Movie(
     adult: false,
     backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
@@ -53,7 +49,7 @@ void main() {
     id: 557,
     originalTitle: 'Spider-Man',
     overview:
-    'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
+        'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
     popularity: 60.441,
     posterPath: '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
     releaseDate: '2002-05-01',
@@ -64,7 +60,6 @@ void main() {
   );
 
   group('Now Playing Movies', () {
-
     final tMovieModelList = <MovieModel>[tMovieModel];
     final tMovieList = <Movie>[tMovie];
 
@@ -92,7 +87,8 @@ void main() {
 
     test('should return connection failure when the device is not connected to internet', () async {
       // arrange
-      when(mockMovieRemoteDataSource.getNowPlayingMovies()).thenThrow(const SocketException('Failed to connect to the network'));
+      when(mockMovieRemoteDataSource.getNowPlayingMovies())
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.getNowPlayingMovies();
       // assert
@@ -149,7 +145,8 @@ void main() {
 
     test('should return connection failure when the device is not connected to internet', () async {
       // arrange
-      when(mockMovieRemoteDataSource.getMovieDetail(id: tId)).thenThrow(SocketException('Failed to connect to the network'));
+      when(mockMovieRemoteDataSource.getMovieDetail(id: tId))
+          .thenThrow(SocketException('Failed to connect to the network'));
       // act
       final result = await repository.getMovieDetail(id: tId);
       // assert
@@ -157,7 +154,7 @@ void main() {
       expect(result, equals(Left(ConnectionFailure())));
     });
   });
-  
+
   group('Get Movie Recommendation', () {
     int tId = 1;
     final tMovieModelList = <MovieModel>[];
@@ -186,7 +183,8 @@ void main() {
 
     test('should return connection failure when the device is not connected to internet', () async {
       // arrange
-      when(mockMovieRemoteDataSource.getMovieRecommendations(id: tId)).thenThrow(const SocketException('Failed to connect to the network'));
+      when(mockMovieRemoteDataSource.getMovieRecommendations(id: tId))
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.getMovieRecommendations(id: tId);
       // assert
@@ -194,5 +192,40 @@ void main() {
       expect(result, equals(Left(ConnectionFailure())));
     });
   });
-  
+
+  group('Popular Movies', () {
+    final tMovieModelList = <MovieModel>[tMovieModel];
+    final tMovieList = <Movie>[tMovie];
+
+    test('should return popular movie list when call to data source is success', () async {
+      // arrange
+      when(mockMovieRemoteDataSource.getPopularMovies()).thenAnswer((_) async => tMovieModelList);
+      // act
+      final result = await repository.getPopularMovies();
+
+      // assert
+      verify(mockMovieRemoteDataSource.getPopularMovies());
+      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
+      final resultList = result.getOrElse(() => []);
+      expect(resultList, tMovieList);
+    });
+
+    test('should return server failure when call to data source is unsuccessful', () async {
+      // arrange
+      when(mockMovieRemoteDataSource.getPopularMovies()).thenThrow(ServerException());
+      // act
+      final result = await repository.getPopularMovies();
+      // assert
+      expect(result, Left(ServerFailure()));
+    });
+
+    test('should return connection failure when device is not connected to the internet', () async {
+      // arrange
+      when(mockMovieRemoteDataSource.getPopularMovies()).thenThrow(SocketException('Failed to connect to the network'));
+      // act
+      final result = await repository.getPopularMovies();
+      // assert
+      expect(result, Left(ConnectionFailure()));
+    });
+  });
 }

@@ -96,4 +96,28 @@ void main() {
       expect(() => call, throwsA(isA<ServerException>()));
     });
   });
+
+  group('Get Popular Movies', () {
+    final tMovieList = MovieResponse.fromJson(json.decode(readJson('dummy_data/popular.json'))).movieList;
+
+    test('should return list of movies when response is success (200)', () async {
+      // arrange
+      when(mockHttpClient.get(Uri.parse('$BASE_URL/movie/popular?$API_KEY')))
+          .thenAnswer((_) async => http.Response(readJson('dummy_data/popular.json'), 200));
+      // act
+      final result = await dataSource.getPopularMovies();
+      // assert
+      expect(result, tMovieList);
+    });
+
+    test('should throw a ServerException when the response code is 404 or other', () async {
+      // arrange
+      when(mockHttpClient.get(Uri.parse('$BASE_URL/movie/popular?$API_KEY')))
+          .thenAnswer((_) async => http.Response('Not Found', 404));
+      // act
+      final call = dataSource.getPopularMovies();
+      // assert
+      expect(() => call, throwsA(isA<ServerException>()));
+    });
+  });
 }
