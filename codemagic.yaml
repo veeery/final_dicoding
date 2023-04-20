@@ -8,8 +8,13 @@ workflows:
         script: flutter test --machine
       - name: Building Android Release Mode
         script: flutter build apk --release
-      - name: Building iOS Release Mode
-        script: flutter build ios
+    artifacts:
+      - build/**/outputs/apk/**/*.apk
+      - build/**/outputs/**/*.aab
+    publishing:
+      email:
+        recipients:
+          - very.very.23.5.1999@gmail.com
     triggering:
       events:
         - push
