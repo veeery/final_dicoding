@@ -1,8 +1,10 @@
 import 'package:core/common/app_color.dart';
 import 'package:core/core.dart';
 import 'package:core/presentation/pages/main_page.dart';
+import 'package:core/presentation/pages/watchlist_page.dart';
 import 'package:dicoding_final_ditonton/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/movie_detail/movie_detail_bloc.dart';
@@ -11,6 +13,7 @@ import 'package:movie/presentation/bloc/popular_movies/popular_movies_bloc.dart'
 import 'package:movie/presentation/bloc/recommendations/movie_recommendations_bloc.dart';
 import 'package:movie/presentation/bloc/search_movies/search_movies_bloc.dart';
 import 'package:movie/presentation/bloc/top_rated/top_rated_movies_bloc.dart';
+import 'package:movie/presentation/bloc/watchlist_movie/watchlist_movie_bloc.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
 import 'package:movie/presentation/pages/movie_home_page.dart';
 import 'package:movie/presentation/pages/now_playing_movies_page.dart';
@@ -60,6 +63,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (_) => di.locator<SearchMoviesBloc>(),
           ),
+          BlocProvider(
+            create: (_) => di.locator<WatchlistMovieBloc>(),
+          ),
         ],
         child: MaterialApp(
             theme: ThemeData.dark().copyWith(
@@ -94,12 +100,15 @@ class MyApp extends StatelessWidget {
                   return MaterialPageRoute(builder: (_) => const TopRatedMoviesPage());
                 case SearchMoviePage.routeName:
                   return MaterialPageRoute(builder: (_) => const SearchMoviePage());
-                case MovieDetailPage.ROUTE_NAME:
+                case MovieDetailPage.routeName:
                   final id = settings.arguments as int;
                   return MaterialPageRoute(
                     builder: (_) => MovieDetailPage(id: id),
                     settings: settings,
                   );
+                // Watchlist
+                case WatchlistPage.routeName:
+                  return CupertinoPageRoute(builder: (_) => const WatchlistPage());
               }
             }),
       ),

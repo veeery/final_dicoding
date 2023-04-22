@@ -5,16 +5,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movie/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:movie/presentation/bloc/recommendations/movie_recommendations_bloc.dart';
+import 'package:movie/presentation/bloc/watchlist_movie_attributes/watchlist_attributes_bloc.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
 
 import '../../dummy_data/dummy_objects.dart';
 
+// Detail Movie
 class MockMovieDetailBloc extends MockBloc<MovieDetailEvent, MovieDetailState> implements MovieDetailBloc {}
 
 class FakeMovieDetailEvent extends Fake implements MovieDetailEvent {}
 
 class FakeMovieDetailState extends Fake implements MovieDetailEvent {}
 
+// Recommendation
 class MockMovieRecommendationBloc extends MockBloc<MovieRecommendationsEvent, MovieRecommendationsState>
     implements MovieRecommendationsBloc {}
 
@@ -22,9 +25,18 @@ class FakeMovieRecommendationEvent extends Fake implements MovieRecommendationsE
 
 class FakeMovieRecommendationState extends Fake implements MovieRecommendationsEvent {}
 
+// Watchlist
+class MockWatchlistAttributesBloc extends MockBloc<WatchlistAttributesEvent, WatchlistAttributesState>
+    implements WatchlistAttributesBloc {}
+
+class FakeWatchlistAttributesState extends Fake implements WatchlistAttributesEvent {}
+
+class FakeWatchlistAttributesEvent extends Fake implements WatchlistAttributesEvent {}
+
 void main() {
   late MockMovieDetailBloc mockMovieDetailBloc;
   late MockMovieRecommendationBloc mockMovieRecommendationBloc;
+  late MockWatchlistAttributesBloc mockWatchlistAttributesBloc;
 
   setUpAll(() {
     // Movie Detail
@@ -33,11 +45,15 @@ void main() {
     // Movie Recommendation
     registerFallbackValue(FakeMovieRecommendationEvent());
     registerFallbackValue(FakeMovieRecommendationState());
+    // Watchlist Attributes
+    registerFallbackValue(FakeWatchlistAttributesState());
+    registerFallbackValue(FakeWatchlistAttributesEvent());
   });
 
   setUp(() {
     mockMovieDetailBloc = MockMovieDetailBloc();
     mockMovieRecommendationBloc = MockMovieRecommendationBloc();
+    mockWatchlistAttributesBloc = MockWatchlistAttributesBloc();
   });
 
   Widget makeTestableWidget(Widget body) {
@@ -47,6 +63,9 @@ void main() {
       ),
       BlocProvider<MovieRecommendationsBloc>.value(
         value: mockMovieRecommendationBloc,
+      ),
+      BlocProvider<WatchlistAttributesBloc>.value(
+        value: mockWatchlistAttributesBloc,
       ),
     ], child: MaterialApp(home: body));
   }
@@ -76,7 +95,6 @@ void main() {
       expect(textFinder, findsOneWidget);
     });
   });
-
 
   group('Movie Detail & Recommendation State', () {
     testWidgets('Page should display MovieCard & Build Movie Recommendations when data is loaded',

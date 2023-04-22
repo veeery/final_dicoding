@@ -9,11 +9,15 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:movie/domain/entities/movie.dart';
 import 'package:movie/domain/entities/movie_detail.dart';
 import 'package:movie/presentation/bloc/recommendations/movie_recommendations_bloc.dart';
+import 'package:movie/presentation/bloc/watchlist_movie/watchlist_movie_bloc.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
 
 class MovieDetailContent extends StatelessWidget {
   final MovieDetail movie;
   final bool isWatchlist;
+
+  static const watchlistAddSuccessMessage = 'Added to Watchlist';
+  static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
 
   const MovieDetailContent({
     Key? key,
@@ -23,6 +27,20 @@ class MovieDetailContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String message = '';
+
+    message = context.select<WatchlistMovieBloc, String>((value) {
+      final state = value.state;
+      if (state is WatchlistMovieStatus) {
+        if (!state.isAdded) {
+          return watchlistAddSuccessMessage;
+        } else {
+          return watchlistRemoveSuccessMessage;
+        }
+      }
+      return 'Failed';
+    });
+
     AppResponsive.init(context: context);
     return Stack(
       children: <Widget>[
@@ -72,8 +90,8 @@ class MovieDetailContent extends StatelessWidget {
                             ),
                             ElevatedButton.icon(
                               key: const Key('watchlist_button'),
-                              onPressed: () {
-                                _onPressedWatchlistButton(context);
+                              onPressed: () async {
+                                _onPressedWatchlistButton(context, message);
                               },
                               icon: isWatchlist ? const Icon(Icons.check_rounded) : const Icon(Icons.add_rounded),
                               label: Text(
@@ -110,7 +128,7 @@ class MovieDetailContent extends StatelessWidget {
                               style: kHeading6,
                             ),
                             buildRecommendation()
-                          ],
+                          ]
                         ),
                       ),
                     ),
@@ -149,11 +167,33 @@ class MovieDetailContent extends StatelessWidget {
     );
   }
 
-  void _onPressedWatchlistButton(BuildContext context) {
+  void _onPressedWatchlistButton(BuildContext context, message) {
     if (isWatchlist) {
-      // context.read<MovieWatchlistBloc>().add(RemoveMovieWatchList(movie));
+      context.read<WatchlistMovieBloc>().add(RemoveWatchlist(movieDetail: movie));
     } else {
-      // context.read<MovieWatchlistBloc>().add(InsertMovieWatchlist(movie));
+      context.read<WatchlistMovieBloc>().add(SaveWatchlist(movieDetail: movie));
+    }
+
+    if (message == watchlistAddSuccessMessage || message == watchlistRemoveSuccessMessage) {
+
+      final snackBar = SnackBar(
+        backgroundColor: Colors.grey,
+        behavior: SnackBarBehavior.floating,
+        showCloseIcon: true,
+        content: Text(message),
+      );
+
+      ScaffoldMessenger.of(context)
+        ..removeCurrentSnackBar()
+        ..showSnackBar(snackBar);
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Text(message),
+            );
+          });
     }
   }
 
@@ -190,8 +230,8 @@ class MovieDetailContent extends StatelessWidget {
           if (state.movieRecommendation.isEmpty) {
             return const Text("There's No Recommendation for this Movie");
           }
-          return Container(
-            height: 150,
+          return SizedBox(
+            height: 20.h,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
@@ -203,7 +243,7 @@ class MovieDetailContent extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacementNamed(
                         context,
-                        MovieDetailPage.ROUTE_NAME,
+                        MovieDetailPage.routeName,
                         arguments: movieRecommendation.id,
                       );
                     },

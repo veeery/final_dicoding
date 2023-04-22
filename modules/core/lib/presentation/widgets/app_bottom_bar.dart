@@ -25,7 +25,7 @@ class AppBottomBar extends StatelessWidget {
               splashRadius: CurveSize.mediumCurve,
               onPressed: () => onTap(0),
               icon: Icon(
-                Icons.home_rounded,
+                Icons.movie_rounded,
                 color: index == 0 ? Colors.cyan : Colors.grey[400],
               )),
           IconButton(
@@ -33,7 +33,7 @@ class AppBottomBar extends StatelessWidget {
               splashRadius: CurveSize.mediumCurve,
               onPressed: () => onTap(1),
               icon: Icon(
-                Icons.account_circle_sharp,
+                Icons.bookmark,
                 color: index == 1 ? Colors.red : Colors.grey[400],
               )),
           // IconButton(

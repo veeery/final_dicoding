@@ -1,4 +1,5 @@
 import 'package:core/common/responsive.dart';
+import 'package:core/presentation/pages/watchlist_page.dart';
 import 'package:core/presentation/widgets/app_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/presentation/pages/movie_home_page.dart';
@@ -50,8 +51,10 @@ class _MainPageState extends State<MainPage> {
 Widget AppDisplayPage({int index = 0}) {
   switch (index) {
     case 0:
-      return MovieHomePage();
+      return const MovieHomePage();
+    case 1:
+      return const WatchlistPage();
     default:
-      return MovieHomePage();
+      return const MovieHomePage();
   }
 }

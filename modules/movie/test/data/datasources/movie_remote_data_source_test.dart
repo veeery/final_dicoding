@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:core/common/constants.dart';
 import 'package:core/common/exception.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:mockito/mockito.dart';
 import 'package:movie/data/datasources/movie_remote_data_source.dart';
 import 'package:movie/data/model/movie_detail_model.dart';
 import 'package:movie/data/model/movie_model.dart';
 import 'package:movie/data/model/movie_response.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-import 'package:http/http.dart' as http;
 
 import '../../helpers/test_helper.mocks.dart';
 import '../../json_reader.dart';
@@ -121,7 +121,7 @@ void main() {
     });
   });
 
-  group('get Top Rated Movies', () {
+  group('Get Top Rated Movies', () {
     final tMovieList = MovieResponse.fromJson(json.decode(readJson('dummy_data/top_rated.json'))).movieList;
 
     test('should return list of movies when response code is 200 ', () async {
@@ -145,7 +145,7 @@ void main() {
     });
   });
 
-  group('search movies', () {
+  group('Search movies', () {
     final tSearchResult =
         MovieResponse.fromJson(json.decode(readJson('dummy_data/search_spiderman_movie.json'))).movieList;
     const tQuery = 'Spiderman';

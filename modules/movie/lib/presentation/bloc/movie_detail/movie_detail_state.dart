@@ -26,4 +26,3 @@ class MovieDetailError extends MovieDetailState {
   @override
   List<Object> get props => [message];
 }
-

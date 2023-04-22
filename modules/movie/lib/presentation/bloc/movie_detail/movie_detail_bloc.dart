@@ -4,7 +4,6 @@ import 'package:movie/domain/entities/movie_detail.dart';
 import 'package:movie/domain/usecases/get_movie_detail.dart';
 
 part 'movie_detail_event.dart';
-
 part 'movie_detail_state.dart';
 
 class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
@@ -22,7 +21,7 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
 
       detailMovie.fold((failure) {
         emit(MovieDetailError(message: failure.message));
-      }, (dataMovie) {
+      }, (dataMovie) async {
         emit(MovieDetailLoaded(movieDetail: dataMovie));
       });
     });

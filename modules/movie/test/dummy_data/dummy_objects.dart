@@ -1,5 +1,6 @@
 
 import 'package:core/domain/entities/genre.dart';
+import 'package:movie/data/model/movie_table.dart';
 import 'package:movie/domain/entities/movie.dart';
 import 'package:movie/domain/entities/movie_detail.dart';
 
@@ -36,3 +37,24 @@ final testMovieDetail = MovieDetail(
   voteAverage: 1,
   voteCount: 1,
 );
+
+const testWatchlistMovie = Movie.watchlist(
+  id: 1,
+  title: 'title',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
+final testMovieTable = MovieTable(
+  id: 1,
+  title: 'title',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
+final testMovieMap = {
+  'id': 1,
+  'overview': 'overview',
+  'posterPath': 'posterPath',
+  'title': 'title',
+};

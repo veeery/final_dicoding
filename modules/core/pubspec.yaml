@@ -21,6 +21,8 @@ dependencies:
   cached_network_image:
   http:
   firebase_analytics:
+  bloc:
+  flutter_bloc:
 
 dev_dependencies:
   flutter_test:

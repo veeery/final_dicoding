@@ -1,3 +1,5 @@
+import 'package:core/common/app_curve_size.dart';
+import 'package:core/common/app_text_style.dart';
 import 'package:core/common/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,15 +31,22 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
+              onChanged: (query) {
+                context.read<SearchMoviesBloc>().add(FetchSearchMovies(query: query));
+              },
               onSubmitted: (query) {
                 context.read<SearchMoviesBloc>().add(FetchSearchMovies(query: query));
               },
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Search title',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(),
+                prefixIcon: const Icon(Icons.search),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(CurveSize.smallCurve)),
               ),
               textInputAction: TextInputAction.search,
+            ),
+            Text(
+              'Search Result',
+              style: kHeading6,
             ),
             Expanded(
               child: BlocBuilder<SearchMoviesBloc, SearchMoviesState>(

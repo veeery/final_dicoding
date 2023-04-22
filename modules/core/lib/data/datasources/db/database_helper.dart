@@ -1,3 +1,4 @@
+import 'package:movie/data/model/movie_table.dart';
 import 'package:sqflite_sqlcipher/sqflite.dart';
 
 class DatabaseHelper {
@@ -46,6 +47,43 @@ class DatabaseHelper {
       );
     ''');
     await batch.commit();
+  }
+
+  // Movie
+  Future<int> insertMovieWatchlist({required MovieTable movieTable}) async {
+    final db = await database;
+    return await db!.insert(_tblMovieWatchlist, movieTable.toJson());
+  }
+
+  Future<int> removeMovieWatchlist({required MovieTable movieTable}) async {
+    final db = await database;
+    return await db!.delete(
+      _tblMovieWatchlist,
+      where: 'id = ?',
+      whereArgs: [movieTable.id],
+    );
+  }
+
+  Future<Map<String, dynamic>?> getMovieById(int id) async {
+    final db = await database;
+    final results = await db!.query(
+      _tblMovieWatchlist,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    if (results.isNotEmpty) {
+      return results.first;
+    } else {
+      return null;
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> getWatchlistMovies() async {
+    final db = await database;
+    final List<Map<String, dynamic>> results = await db!.query(_tblMovieWatchlist);
+    // final List<Map<String, dynamic>> results = [];
+    return results;
   }
 
 }
