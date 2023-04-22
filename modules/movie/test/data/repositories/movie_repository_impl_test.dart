@@ -303,7 +303,7 @@ void main() {
     });
   });
 
-  group('save watchlist', () {
+  group('Save watchlist', () {
     test('should return success message when saving successful', () async {
       // arrange
       when(mockMovieLocalDataSource.insertMovieWatchlist(movieTable: testMovieTable))
@@ -325,7 +325,7 @@ void main() {
     });
   });
 
-  group('remove watchlist', () {
+  group('Remove watchlist', () {
     test('should return success message when remove successful', () async {
       // arrange
       when(mockMovieLocalDataSource.removeMovieWatchlist(movieTable: testMovieTable))
@@ -347,7 +347,7 @@ void main() {
     });
   });
 
-  group('get watchlist status', () {
+  group('Get watchlist status', () {
     test('should return watch status whether data is found', () async {
       // arrange
       const int tId = 1;
@@ -355,11 +355,11 @@ void main() {
       // act
       final result = await repository.isAddedToWatchlist(id: tId);
       // assert
-      expect(result, const Right(false));
+      expect(result, false);
     });
   });
 
-  group('get watchlist movies', () {
+  group('Get watchlist movies', () {
     test('should return list of Movies', () async {
       // arrange
       when(mockMovieLocalDataSource.getWatchlistMovies()).thenAnswer((_) async => [testMovieTable]);

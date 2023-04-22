@@ -30,11 +30,8 @@ class RemoveWatchlist extends WatchlistMovieEvent {
 class LoadWatchlistStatus extends WatchlistMovieEvent {
   final int movieId;
 
-
   @override
   List<Object> get props => [movieId];
 
   const LoadWatchlistStatus({required this.movieId});
 }
-
-

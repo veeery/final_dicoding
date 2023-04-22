@@ -2,8 +2,6 @@ import 'package:core/common/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/watchlist_movie/watchlist_movie_bloc.dart';
-import 'package:movie/presentation/pages/now_playing_movies_page.dart';
-import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:movie/presentation/widgets/movie_card_list.dart';
 
 class WatchlistPage extends StatefulWidget {
@@ -70,18 +68,6 @@ class _WatchlistPageState extends State<WatchlistPage> {
                             itemCount: state.result.length,
                             itemBuilder: (context, index) {
                               final watchlistMovie = state.result[index];
-                              return GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    PopularMoviesPage.routeName,
-                                  );
-                                },
-                                child: Container(
-                                  height: 100,
-                                  color: Colors.blue,
-                                ),
-                              );
                               return MovieCard(watchlistMovie);
                             },
                           ),

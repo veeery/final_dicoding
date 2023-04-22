@@ -227,24 +227,15 @@ class MockMovieRepository extends _i1.Mock implements _i5.MovieRepository {
         )),
       ) as _i6.Future<_i2.Either<_i7.Failure, String>>);
   @override
-  _i6.Future<_i2.Either<_i7.Failure, bool>> isAddedToWatchlist(
-          {required int? id}) =>
+  _i6.Future<bool> isAddedToWatchlist({required int? id}) =>
       (super.noSuchMethod(
         Invocation.method(
           #isAddedToWatchlist,
           [],
           {#id: id},
         ),
-        returnValue: _i6.Future<_i2.Either<_i7.Failure, bool>>.value(
-            _FakeEither_0<_i7.Failure, bool>(
-          this,
-          Invocation.method(
-            #isAddedToWatchlist,
-            [],
-            {#id: id},
-          ),
-        )),
-      ) as _i6.Future<_i2.Either<_i7.Failure, bool>>);
+        returnValue: _i6.Future<bool>.value(false),
+      ) as _i6.Future<bool>);
   @override
   _i6.Future<_i2.Either<_i7.Failure, List<_i8.Movie>>> getWatchlistMovies() =>
       (super.noSuchMethod(

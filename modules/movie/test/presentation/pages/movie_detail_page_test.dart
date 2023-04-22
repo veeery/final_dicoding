@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movie/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:movie/presentation/bloc/recommendations/movie_recommendations_bloc.dart';
-import 'package:movie/presentation/bloc/watchlist_movie_attributes/watchlist_attributes_bloc.dart';
+import 'package:movie/presentation/bloc/watchlist_movie/watchlist_movie_bloc.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
 
 import '../../dummy_data/dummy_objects.dart';
@@ -26,17 +26,16 @@ class FakeMovieRecommendationEvent extends Fake implements MovieRecommendationsE
 class FakeMovieRecommendationState extends Fake implements MovieRecommendationsEvent {}
 
 // Watchlist
-class MockWatchlistAttributesBloc extends MockBloc<WatchlistAttributesEvent, WatchlistAttributesState>
-    implements WatchlistAttributesBloc {}
+class MockWatchlistMovieBloc extends MockBloc<WatchlistMovieEvent, WatchlistMovieState> implements WatchlistMovieBloc {}
 
-class FakeWatchlistAttributesState extends Fake implements WatchlistAttributesEvent {}
+class FakeWatchlistMovieState extends Fake implements WatchlistMovieEvent {}
 
-class FakeWatchlistAttributesEvent extends Fake implements WatchlistAttributesEvent {}
+class FakeWatchlistMovieEvent extends Fake implements WatchlistMovieEvent {}
 
 void main() {
   late MockMovieDetailBloc mockMovieDetailBloc;
   late MockMovieRecommendationBloc mockMovieRecommendationBloc;
-  late MockWatchlistAttributesBloc mockWatchlistAttributesBloc;
+  late MockWatchlistMovieBloc mockWatchlistMovieBloc;
 
   setUpAll(() {
     // Movie Detail
@@ -46,14 +45,14 @@ void main() {
     registerFallbackValue(FakeMovieRecommendationEvent());
     registerFallbackValue(FakeMovieRecommendationState());
     // Watchlist Attributes
-    registerFallbackValue(FakeWatchlistAttributesState());
-    registerFallbackValue(FakeWatchlistAttributesEvent());
+    registerFallbackValue(FakeWatchlistMovieState());
+    registerFallbackValue(FakeWatchlistMovieEvent());
   });
 
   setUp(() {
     mockMovieDetailBloc = MockMovieDetailBloc();
     mockMovieRecommendationBloc = MockMovieRecommendationBloc();
-    mockWatchlistAttributesBloc = MockWatchlistAttributesBloc();
+    mockWatchlistMovieBloc = MockWatchlistMovieBloc();
   });
 
   Widget makeTestableWidget(Widget body) {
@@ -64,8 +63,8 @@ void main() {
       BlocProvider<MovieRecommendationsBloc>.value(
         value: mockMovieRecommendationBloc,
       ),
-      BlocProvider<WatchlistAttributesBloc>.value(
-        value: mockWatchlistAttributesBloc,
+      BlocProvider<WatchlistMovieBloc>.value(
+        value: mockWatchlistMovieBloc,
       ),
     ], child: MaterialApp(home: body));
   }
@@ -75,18 +74,21 @@ void main() {
   group('Movie Detail Page', () {
     testWidgets('Page should display center progress bar when loading', (WidgetTester tester) async {
       when(() => mockMovieDetailBloc.state).thenReturn(MovieDetailLoading());
+      when(() => mockWatchlistMovieBloc.state).thenReturn(WatchlistMovieLoading());
+      when(() => mockMovieRecommendationBloc.state).thenReturn(MovieRecommendationLoading());
 
       final progressBarFinder = find.byType(CircularProgressIndicator);
       final centerFinder = find.byType(Center);
 
       await tester.pumpWidget(makeTestableWidget(MovieDetailPage(id: tId)));
-
       expect(centerFinder, findsOneWidget);
       expect(progressBarFinder, findsOneWidget);
     });
 
     testWidgets('Page should display text with message when Error', (WidgetTester tester) async {
       when(() => mockMovieDetailBloc.state).thenReturn(MovieDetailError(message: 'Error Message'));
+      when(() => mockMovieRecommendationBloc.state).thenReturn(MovieRecommendationError(message: 'Error Message'));
+      when(() => mockWatchlistMovieBloc.state).thenReturn(WatchlistMovieError(message: 'Error Message'));
 
       final textFinder = find.byKey(const Key('error_message'));
 
@@ -96,12 +98,27 @@ void main() {
     });
   });
 
-  group('Movie Detail & Recommendation State', () {
-    testWidgets('Page should display MovieCard & Build Movie Recommendations when data is loaded',
+  group('Movie Detail, Recommendation State & Watchlist Status', () {
+    testWidgets('Page should return MovieDetail & Recommendation with Watchlist status TRUE',
         (WidgetTester tester) async {
       when(() => mockMovieDetailBloc.state).thenReturn(MovieDetailLoaded(movieDetail: testMovieDetail));
       when(() => mockMovieRecommendationBloc.state)
           .thenReturn(MovieRecommendationLoaded(movieRecommendation: [testMovie]));
+      when(() => mockWatchlistMovieBloc.state).thenReturn(WatchlistMovieStatus(isAdded: true));
+
+      final result = find.byKey(const Key('build_movie_recommendations'));
+
+      await tester.pumpWidget(makeTestableWidget(MovieDetailPage(id: tId)));
+
+      expect(result, findsOneWidget);
+    });
+
+    testWidgets('Page should return MovieDetail & Recommendation with Watchlist status FALSE',
+        (WidgetTester tester) async {
+      when(() => mockMovieDetailBloc.state).thenReturn(MovieDetailLoaded(movieDetail: testMovieDetail));
+      when(() => mockMovieRecommendationBloc.state)
+          .thenReturn(MovieRecommendationLoaded(movieRecommendation: [testMovie]));
+      when(() => mockWatchlistMovieBloc.state).thenReturn(WatchlistMovieStatus(isAdded: false));
 
       final result = find.byKey(const Key('build_movie_recommendations'));
 

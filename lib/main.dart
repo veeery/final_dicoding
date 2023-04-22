@@ -83,7 +83,9 @@ class MyApp extends StatelessWidget {
               );
             },
             title: 'Flutter Ditonton',
-            initialRoute: MainPage.routeName,
+            // initialRoute: MainPage.routeName,
+            navigatorObservers: [routeObserver],
+            home: const MainPage(),
             onGenerateRoute: (settings) {
               switch (settings.name) {
                 // main screen for bottom navigator
@@ -108,7 +110,15 @@ class MyApp extends StatelessWidget {
                   );
                 // Watchlist
                 case WatchlistPage.routeName:
-                  return CupertinoPageRoute(builder: (_) => const WatchlistPage());
+                  return MaterialPageRoute(builder: (_) => const WatchlistPage());
+                default:
+                  return MaterialPageRoute(builder: (_) {
+                    return const Scaffold(
+                      body: Center(
+                        child: Text('Page not found :('),
+                      ),
+                    );
+                  });
               }
             }),
       ),

@@ -22,19 +22,20 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   void initState() {
     Future.microtask(() {
       context.read<MovieDetailBloc>().add(FetchMovieDetail(id: widget.id));
-      context.read<WatchlistMovieBloc>().add(LoadWatchlistStatus(movieId: widget.id));
       context.read<MovieRecommendationsBloc>().add(FetchMovieRecommendation(id: widget.id));
+      context.read<WatchlistMovieBloc>().add(LoadWatchlistStatus(movieId: widget.id));
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    AppResponsive.init(context: context);
+
     bool isWatchlist = context.select<WatchlistMovieBloc, bool>(
       (value) => (value.state is WatchlistMovieStatus) ? (value.state as WatchlistMovieStatus).isAdded : false,
     );
 
-    AppResponsive.init(context: context);
     return Scaffold(
       body: BlocBuilder<MovieDetailBloc, MovieDetailState>(
         builder: (context, state) {
