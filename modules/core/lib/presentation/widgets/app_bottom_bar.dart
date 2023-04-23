@@ -26,24 +26,24 @@ class AppBottomBar extends StatelessWidget {
               onPressed: () => onTap(0),
               icon: Icon(
                 Icons.movie_rounded,
-                color: index == 0 ? Colors.cyan : Colors.grey[400],
+                color: index == 0 ? Colors.black : Colors.grey[400],
               )),
           IconButton(
               splashColor: Colors.cyan[400],
               splashRadius: CurveSize.mediumCurve,
               onPressed: () => onTap(1),
               icon: Icon(
-                Icons.bookmark,
+                Icons.tv_rounded,
                 color: index == 1 ? Colors.red : Colors.grey[400],
               )),
-          // IconButton(
-          //     splashColor: Colors.cyan[400],
-          //     splashRadius: 500,
-          //     onPressed: () => onTap(1),
-          //     icon: Icon(
-          //       Icons.local_fire_department_sharp,
-          //       color: index == 1 ? Colors.red : Colors.grey[400],
-          //     )),
+          IconButton(
+              splashColor: Colors.cyan[400],
+              splashRadius: CurveSize.mediumCurve,
+              onPressed: () => onTap(2),
+              icon: Icon(
+                Icons.bookmark_rounded,
+                color: index == 2 ? Colors.red : Colors.grey[400],
+              )),
           // IconButton(
           //     splashColor: Colors.cyan[400],
           //     splashRadius: 500,

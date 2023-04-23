@@ -3,6 +3,7 @@ import 'package:core/presentation/pages/watchlist_page.dart';
 import 'package:core/presentation/widgets/app_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/presentation/pages/movie_home_page.dart';
+import 'package:tv/presentation/pages/tv_series_home_page.dart';
 
 // This is Dashboard / BottomNavigation with
 // Home, Profile
@@ -53,6 +54,8 @@ Widget AppDisplayPage({int index = 0}) {
     case 0:
       return const MovieHomePage();
     case 1:
+      return const TvSeriesHomePage();
+    case 2:
       return const WatchlistPage();
     default:
       return const MovieHomePage();

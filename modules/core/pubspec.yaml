@@ -13,6 +13,8 @@ dependencies:
   # Module Movie
   movie:
     path: ../movie
+  tv:
+    path: ../tv
 
   google_fonts:
   equatable:

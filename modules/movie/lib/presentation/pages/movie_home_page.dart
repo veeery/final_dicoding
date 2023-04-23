@@ -1,3 +1,4 @@
+import 'package:core/presentation/widgets/app_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/now_playing/now_playing_movies_bloc.dart';
@@ -7,7 +8,6 @@ import 'package:movie/presentation/pages/now_playing_movies_page.dart';
 import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:movie/presentation/pages/search_movie_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
-import 'package:movie/presentation/widgets/app_heading.dart';
 import 'package:movie/presentation/widgets/movie_list.dart';
 
 class MovieHomePage extends StatefulWidget {

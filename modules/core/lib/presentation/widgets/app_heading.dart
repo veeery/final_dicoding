@@ -34,14 +34,14 @@ class AppHeading extends StatelessWidget {
         onTap == null
             ? Container()
             : InkWell(
-                onTap: onTap,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 1.w),
-                  child: Row(
-                    children: [Text('See More'), Icon(Icons.arrow_forward_ios)],
-                  ),
-                ),
-              ),
+          onTap: onTap,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 1.w),
+            child: Row(
+              children: [Text('See More'), Icon(Icons.arrow_forward_ios)],
+            ),
+          ),
+        ),
       ],
     );
   }

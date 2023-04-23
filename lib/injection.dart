@@ -22,11 +22,18 @@ import 'package:movie/presentation/bloc/recommendations/movie_recommendations_bl
 import 'package:movie/presentation/bloc/search_movies/search_movies_bloc.dart';
 import 'package:movie/presentation/bloc/top_rated/top_rated_movies_bloc.dart';
 import 'package:movie/presentation/bloc/watchlist_movie/watchlist_movie_bloc.dart';
+import 'package:tv/data/datasources/tv_remote_data_source.dart';
+import 'package:tv/data/repositories/tv_repository_impl.dart';
+import 'package:tv/domain/repositories/tv_series_repository.dart';
+import 'package:tv/domain/usecases/get_on_the_air.dart';
+import 'package:tv/presentation/bloc/on_the_air/on_the_air_bloc.dart';
 
 final locator = GetIt.instance;
 
 void init() {
   injectionMovie();
+
+  injectionTvSeries();
 
   // Helper
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
@@ -49,11 +56,6 @@ void injectionMovie() {
         removeMovieWatchlist: locator(),
         saveMovieWatchlist: locator(),
       ));
-  // locator.registerFactory(() => WatchlistAttributesBloc(
-  //       removeMovieWatchlist: locator(),
-  //       getMovieWatchListStatus: locator(),
-  //       saveMovieWatchlist: locator(),
-  //     ));
 
   // Use Case
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
@@ -78,4 +80,19 @@ void injectionMovie() {
   // Data Source
   locator.registerLazySingleton<MovieRemoteDataSource>(() => MovieRemoteDataSourceImpl(client: locator()));
   locator.registerLazySingleton<MovieLocalDataSource>(() => MovieLocalDataSourceImpl(databaseHelper: locator()));
+}
+
+void injectionTvSeries() {
+  // BloC
+  locator.registerFactory(() => OnTheAirBloc(getOnTheAirTvSeries: locator()));
+  // Use Case
+  locator.registerLazySingleton(() => GetOnTheAirTvSeries(locator()));
+  // Repository
+  locator.registerLazySingleton<TvSeriesRepository>(
+    () => TvSeriesRepositoryImpl(
+      remoteDataSource: locator(),
+    ),
+  );
+  // Data Source
+  locator.registerLazySingleton<TvRemoteDataSource>(() => TvSeriesRemoteDataSourceImpl(client: locator()));
 }

@@ -20,6 +20,8 @@ import 'package:movie/presentation/pages/now_playing_movies_page.dart';
 import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:movie/presentation/pages/search_movie_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
+import 'package:tv/presentation/bloc/on_the_air/on_the_air_bloc.dart';
+import 'package:tv/presentation/pages/tv_series_home_page.dart';
 
 import 'injection.dart' as di;
 
@@ -66,6 +68,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (_) => di.locator<WatchlistMovieBloc>(),
           ),
+          BlocProvider(
+            create: (_) => di.locator<OnTheAirBloc>(),
+          ),
         ],
         child: MaterialApp(
             theme: ThemeData.dark().copyWith(
@@ -108,6 +113,10 @@ class MyApp extends StatelessWidget {
                     builder: (_) => MovieDetailPage(id: id),
                     settings: settings,
                   );
+                // Tv Series
+                case TvSeriesHomePage.routeName:
+                  return MaterialPageRoute(builder: (_) => const TvSeriesHomePage());
+
                 // Watchlist
                 case WatchlistPage.routeName:
                   return MaterialPageRoute(builder: (_) => const WatchlistPage());

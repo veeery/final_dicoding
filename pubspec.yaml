@@ -38,6 +38,8 @@ dependencies:
   core:
     path: modules/core
 
+  tv:
+    path: modules/tv
 
 
   cached_network_image:
