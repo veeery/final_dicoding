@@ -1,10 +1,10 @@
 import 'package:core/common/app_color.dart';
 import 'package:core/core.dart';
 import 'package:core/presentation/pages/main_page.dart';
+import 'package:core/presentation/pages/trending_page.dart';
 import 'package:core/presentation/pages/watchlist_page.dart';
 import 'package:dicoding_final_ditonton/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/movie_detail/movie_detail_bloc.dart';
@@ -96,6 +96,8 @@ class MyApp extends StatelessWidget {
                 // main screen for bottom navigator
                 case MainPage.routeName:
                   return MaterialPageRoute(builder: (_) => const MainPage());
+                case TrendingPage.routeName:
+                  return MaterialPageRoute(builder: (_) => const TrendingPage());
                 // Movie
                 case MovieHomePage.routeName:
                   return MaterialPageRoute(builder: (_) => const MovieHomePage());

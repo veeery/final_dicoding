@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:core/presentation/widgets/app_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,9 +6,9 @@ import 'package:movie/presentation/bloc/now_playing/now_playing_movies_bloc.dart
 import 'package:movie/presentation/bloc/popular_movies/popular_movies_bloc.dart';
 import 'package:movie/presentation/bloc/top_rated/top_rated_movies_bloc.dart';
 import 'package:movie/presentation/pages/now_playing_movies_page.dart';
-import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:movie/presentation/pages/search_movie_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
+import 'package:movie/presentation/widgets/movie_card.dart';
 import 'package:movie/presentation/widgets/movie_list.dart';
 
 class MovieHomePage extends StatefulWidget {
@@ -60,31 +61,22 @@ class _MovieHomePageState extends State<MovieHomePage> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is NowPlayingMoviesLoaded) {
-                  return MovieList(movies: state.result);
+                  return CarouselSlider.builder(
+                    itemCount: state.result.length,
+                    options: CarouselOptions(
+                      enableInfiniteScroll: false,
+                      autoPlayInterval: const Duration(seconds: 2),
+                      autoPlay: true,
+                    ),
+                    itemBuilder: (context, index, realIndex) {
+                      final movie = state.result[index];
+                      return MovieCard(
+                        movie: movie,
+                        isOnCarousel: true,
+                      );
+                    },
+                  );
                 } else if (state is NowPlayingMoviesError) {
-                  return Center(
-                    child: Text(state.message),
-                  );
-                } else {
-                  return const Center(
-                    child: Text('Unknown Error'),
-                  );
-                }
-              },
-            ),
-          ),
-          AppHeading(
-            title: 'Popular Movies',
-            onTap: () => Navigator.pushNamed(context, PopularMoviesPage.routeName),
-            child: BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
-              builder: (context, state) {
-                if (state is PopularMovieLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state is PopularMovieLoaded) {
-                  return MovieList(movies: state.result);
-                } else if (state is PopularMovieError) {
                   return Center(
                     child: Text(state.message),
                   );

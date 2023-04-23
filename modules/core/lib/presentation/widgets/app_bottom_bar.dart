@@ -26,7 +26,7 @@ class AppBottomBar extends StatelessWidget {
               onPressed: () => onTap(0),
               icon: Icon(
                 Icons.movie_rounded,
-                color: index == 0 ? Colors.black : Colors.grey[400],
+                color: index == 0 ? Colors.amber : Colors.grey[400],
               )),
           IconButton(
               splashColor: Colors.cyan[400],
@@ -34,32 +34,32 @@ class AppBottomBar extends StatelessWidget {
               onPressed: () => onTap(1),
               icon: Icon(
                 Icons.tv_rounded,
-                color: index == 1 ? Colors.red : Colors.grey[400],
+                color: index == 1 ? Colors.amber : Colors.grey[400],
               )),
           IconButton(
               splashColor: Colors.cyan[400],
               splashRadius: CurveSize.mediumCurve,
               onPressed: () => onTap(2),
               icon: Icon(
-                Icons.bookmark_rounded,
+                Icons.local_fire_department_rounded,
                 color: index == 2 ? Colors.red : Colors.grey[400],
               )),
-          // IconButton(
-          //     splashColor: Colors.cyan[400],
-          //     splashRadius: 500,
-          //     onPressed: () => onTap(2),
-          //     icon: Icon(
-          //       Icons.bookmark_outline_rounded,
-          //       color: index == 2 ? Colors.cyan : Colors.grey[400],
-          //     )),
-          // IconButton(
-          //     splashColor: Colors.cyan[400],
-          //     splashRadius: 500,
-          //     onPressed: () => onTap(3),
-          //     icon: Icon(
-          //       Icons.settings_rounded,
-          //       color: index == 3 ? Colors.cyan : Colors.grey[400],
-          //     )),
+          IconButton(
+              splashColor: Colors.cyan[400],
+              splashRadius: CurveSize.mediumCurve,
+              onPressed: () => onTap(3),
+              icon: Icon(
+                Icons.bookmark_rounded,
+                color: index == 3 ? Colors.amber : Colors.grey[400],
+              )),
+          IconButton(
+              splashColor: Colors.cyan[400],
+              splashRadius: CurveSize.mediumCurve,
+              onPressed: () => onTap(4),
+              icon: Icon(
+                Icons.account_circle_rounded,
+                color: index == 4 ? Colors.amber : Colors.grey[400],
+              )),
         ],
       ),
     );

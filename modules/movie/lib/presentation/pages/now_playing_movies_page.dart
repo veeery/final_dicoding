@@ -2,7 +2,7 @@ import 'package:core/common/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/now_playing/now_playing_movies_bloc.dart';
-import 'package:movie/presentation/widgets/movie_card_list.dart';
+import 'package:movie/presentation/widgets/movie_card.dart';
 
 class NowPlayingMoviesPage extends StatefulWidget {
   static const routeName = '/now-playing-movie';
@@ -40,7 +40,7 @@ class _NowPlayingMoviesPageState extends State<NowPlayingMoviesPage> {
                 itemCount: state.result.length,
                 itemBuilder: (context, index) {
                   final movie = state.result[index];
-                  return MovieCard(movie);
+                  return MovieCard(movie: movie,);
                   // return Text('aw');
                 },
               );

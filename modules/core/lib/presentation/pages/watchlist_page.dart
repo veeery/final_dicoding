@@ -2,7 +2,7 @@ import 'package:core/common/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/watchlist_movie/watchlist_movie_bloc.dart';
-import 'package:movie/presentation/widgets/movie_card_list.dart';
+import 'package:movie/presentation/widgets/movie_card.dart';
 
 class WatchlistPage extends StatefulWidget {
   static const routeName = '/watchlist';
@@ -68,7 +68,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
                             itemCount: state.result.length,
                             itemBuilder: (context, index) {
                               final watchlistMovie = state.result[index];
-                              return MovieCard(watchlistMovie);
+                              return MovieCard(movie: watchlistMovie);
                             },
                           ),
                         );

@@ -16,13 +16,13 @@ dependencies:
   tv:
     path: ../tv
 
+  carousel_slider:
   google_fonts:
   equatable:
   dartz:
   sqflite:
   cached_network_image:
   http:
-  firebase_analytics:
   bloc:
   flutter_bloc:
 

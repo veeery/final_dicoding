@@ -26,22 +26,26 @@ class AppHeading extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-            padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
-            child: Text(
-              title,
-              style: kHeading6,
-            )),
+          padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
+          child: Text(
+            title,
+            style: kHeading6,
+          ),
+        ),
         onTap == null
             ? Container()
             : InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 1.w),
-            child: Row(
-              children: [Text('See More'), Icon(Icons.arrow_forward_ios)],
-            ),
-          ),
-        ),
+                onTap: onTap,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 1.w),
+                  child: Row(
+                    children: const [
+                      Text('See More'),
+                      Icon(Icons.arrow_forward_ios),
+                    ],
+                  ),
+                ),
+              ),
       ],
     );
   }

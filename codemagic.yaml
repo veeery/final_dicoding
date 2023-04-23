@@ -1,5 +1,5 @@
 workflows:
-  movie:
+  workflow_testing:
     name: Unit Testing
     instance_type: mac_mini_m1
     environment:
@@ -9,6 +9,9 @@ workflows:
         script: flutter pub get
       - name: Testing for Modularization Movie
         working_directory: modules/movie
+        script: flutter test --machine
+      - name: Testing for Modularization Tv Series
+        working_directory: modules/tv
         script: flutter test --machine
       - name: Building Android
         script: flutter build appbundle --release

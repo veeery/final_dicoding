@@ -4,7 +4,7 @@ import 'package:core/common/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/search_movies/search_movies_bloc.dart';
-import 'package:movie/presentation/widgets/movie_card_list.dart';
+import 'package:movie/presentation/widgets/movie_card.dart';
 
 class SearchMoviePage extends StatefulWidget {
   static const routeName = '/search-page';
@@ -58,7 +58,7 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                       itemCount: state.result.length,
                       itemBuilder: (context, index) {
                         final movie = state.result[index];
-                        return MovieCard(movie);
+                        return MovieCard(movie: movie);
                       },
                     );
                   } else if (state is SearchMoviesError) {

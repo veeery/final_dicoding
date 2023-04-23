@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/popular_movies/popular_movies_bloc.dart';
 import 'package:movie/presentation/pages/search_movie_page.dart';
-import 'package:movie/presentation/widgets/movie_card_list.dart';
+import 'package:movie/presentation/widgets/movie_card.dart';
 
 class PopularMoviesPage extends StatefulWidget {
   static const routeName = '/popular-movies';
@@ -41,7 +41,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
                 itemCount: state.result.length,
                 itemBuilder: (context, index) {
                   final movie = state.result[index];
-                  return MovieCard(movie);
+                  return MovieCard(movie: movie,);
                   // return Text('aw');
                 },
               );

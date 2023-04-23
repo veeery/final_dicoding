@@ -1,4 +1,5 @@
 import 'package:core/common/responsive.dart';
+import 'package:core/presentation/pages/trending_page.dart';
 import 'package:core/presentation/pages/watchlist_page.dart';
 import 'package:core/presentation/widgets/app_bottom_bar.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +57,10 @@ Widget AppDisplayPage({int index = 0}) {
     case 1:
       return const TvSeriesHomePage();
     case 2:
+      return const TrendingPage();
+    case 3:
+      return const WatchlistPage();
+    case 4:
       return const WatchlistPage();
     default:
       return const MovieHomePage();
