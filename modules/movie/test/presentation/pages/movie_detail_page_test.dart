@@ -126,5 +126,40 @@ void main() {
 
       expect(result, findsOneWidget);
     });
+
+    testWidgets('Page should triggered when back', (WidgetTester tester) async {
+      when(() => mockMovieDetailBloc.state).thenReturn(MovieDetailLoaded(movieDetail: testMovieDetail));
+      when(() => mockMovieRecommendationBloc.state)
+          .thenReturn(MovieRecommendationLoaded(movieRecommendation: [testMovie]));
+      when(() => mockWatchlistMovieBloc.state).thenReturn(WatchlistMovieStatus(isAdded: false));
+
+      await tester.pumpWidget(makeTestableWidget(MovieDetailPage(id: tId)));
+
+      final popScopeFinder = find.byKey(const Key('willPopScope_movie'));
+
+      await tester.pageBack();
+      expect(popScopeFinder, findsOneWidget);
+
+
+    });
+
+    testWidgets('Page should return SnackBar Message', (WidgetTester tester) async {
+      when(() => mockMovieDetailBloc.state).thenReturn(MovieDetailLoaded(movieDetail: testMovieDetail));
+      when(() => mockMovieRecommendationBloc.state)
+          .thenReturn(MovieRecommendationLoaded(movieRecommendation: [testMovie]));
+      when(() => mockWatchlistMovieBloc.state).thenReturn(WatchlistMovieStatus(isAdded: false));
+
+      await tester.pumpWidget(makeTestableWidget(MovieDetailPage(id: tId)));
+      final snackBarTextFinder = find.text('Added to Watchlist');
+      expect(snackBarTextFinder, findsNothing);
+
+      await tester.tap(find.byKey(const Key('watchlist_button')));
+      expect(snackBarTextFinder, findsNothing);
+      await tester.pump();
+      expect(snackBarTextFinder, findsOneWidget);
+    });
+
+
+
   });
 }

@@ -86,6 +86,10 @@ void main() {
       WatchlistMovieLoading(),
       WatchlistMovieStatus(isAdded: true),
     ],
+    verify: (_) => [
+      verify(mockSaveMovieWatchlist.execute(movieDetail: testMovieDetail)),
+      SaveWatchlist(movieDetail: testMovieDetail).props,
+    ],
   );
 
   blocTest<WatchlistMovieBloc, WatchlistMovieState>(
@@ -100,6 +104,10 @@ void main() {
       WatchlistMovieLoading(),
       WatchlistMovieStatus(isAdded: false),
     ],
+    verify: (_) => [
+      verify(mockRemoveMovieWatchlist.execute(movieDetail: testMovieDetail)),
+      RemoveWatchlist(movieDetail: testMovieDetail).props,
+    ],
   );
 
   blocTest<WatchlistMovieBloc, WatchlistMovieState>(
@@ -111,6 +119,10 @@ void main() {
     act: (bloc) => bloc.add(const LoadWatchlistStatus(movieId: 1)),
     expect: () => [
       WatchlistMovieStatus(isAdded: false),
+    ],
+    verify: (_) => [
+      verify(mockGetMovieWatchListStatus.execute(1)),
+      const LoadWatchlistStatus(movieId: 1).props,
     ],
   );
 
@@ -124,6 +136,10 @@ void main() {
     expect: () => [
       WatchlistMovieStatus(isAdded: true),
     ],
+    verify: (_) => [
+      verify(mockGetMovieWatchListStatus.execute(1)),
+      const LoadWatchlistStatus(movieId: 1).props,
+    ],
   );
 
   blocTest<WatchlistMovieBloc, WatchlistMovieState>(
@@ -134,11 +150,10 @@ void main() {
       return watchlistMovieBloc;
     },
     act: (bloc) => bloc.add(FetchWatchlistMovie()),
-    expect: () => [
-      WatchlistMovieLoading(),
-      WatchlistMovieError(message: 'Server Failure')
+    expect: () => [WatchlistMovieLoading(), WatchlistMovieError(message: 'Server Failure')],
+    verify: (_) => [
+      verify(mockGetWatchListMovie.execute()),
+      FetchWatchlistMovie().props,
     ],
-    verify: (_) => verify(mockGetWatchListMovie.execute()),
   );
-
 }

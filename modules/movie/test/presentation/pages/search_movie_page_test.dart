@@ -64,4 +64,18 @@ void main() {
 
     expect(textFinder, findsOneWidget);
   });
+
+  testWidgets('Page should triggered onSubmitted or onChanged when clicked or OK', (WidgetTester tester) async {
+    when(() => mockSearchMovieBloc.state).thenReturn(SearchMoviesLoaded(result: [testMovie]));
+
+    final onSubmittedFinder = find.byType(TextField);
+
+    await tester.pumpWidget(makeTestableWidget(const SearchMoviePage()));
+    await tester.enterText(onSubmittedFinder, 'abc');
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await tester.pump();
+    
+    expect(find.text('abc'), findsOneWidget);
+    
+  });
 }

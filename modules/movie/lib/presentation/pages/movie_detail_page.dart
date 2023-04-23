@@ -37,30 +37,38 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     );
 
     return Scaffold(
-      body: BlocBuilder<MovieDetailBloc, MovieDetailState>(
-        builder: (context, state) {
-          if (state is MovieDetailLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is MovieDetailLoaded) {
-            final movieDetail = state.movieDetail;
-            return MovieDetailContent(
-              key: const Key('movie_detail_content'),
-              isWatchlist: isWatchlist,
-              movie: movieDetail,
-            );
-          } else if (state is MovieDetailError) {
-            return Center(
-              key: const Key('error_message'),
-              child: Text(state.message),
-            );
-          } else {
-            return const Center(
-              child: Text('Empty data'),
-            );
-          }
+      body: WillPopScope(
+        key: const Key('willPopScope_movie'),
+        onWillPop: () {
+          context.read<WatchlistMovieBloc>().add(FetchWatchlistMovie());
+          return Future.value(true);
         },
+        child: BlocBuilder<MovieDetailBloc, MovieDetailState>(
+          builder: (context, state) {
+            if (state is MovieDetailLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is MovieDetailLoaded) {
+              final movieDetail = state.movieDetail;
+
+              return MovieDetailContent(
+                key: const Key('movie_detail_content'),
+                isWatchlist: isWatchlist,
+                movie: movieDetail,
+              );
+            } else if (state is MovieDetailError) {
+              return Center(
+                key: const Key('error_message'),
+                child: Text(state.message),
+              );
+            } else {
+              return const Center(
+                child: Text('Empty data'),
+              );
+            }
+          },
+        ),
       ),
     );
   }
