@@ -5,6 +5,7 @@ import 'package:core/common/constants.dart';
 import 'package:core/common/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:tv/domain/entities/tv_series.dart';
+import 'package:tv/presentation/pages/detail_tv_page.dart';
 
 class TvSeriesCard extends StatelessWidget {
   final TvSeries tvSeries;
@@ -17,11 +18,11 @@ class TvSeriesCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 1.h),
       child: InkWell(
         onTap: () {
-          // Navigator.pushNamed(
-          //   context,
-          //   MovieDetailPage.routeName,
-          //   arguments: movie.id,
-          // );
+          Navigator.pushNamed(
+            context,
+            DetailTvPage.routeName,
+            arguments: tvSeries.id,
+          );
         },
         child: Stack(
           alignment: Alignment.bottomLeft,

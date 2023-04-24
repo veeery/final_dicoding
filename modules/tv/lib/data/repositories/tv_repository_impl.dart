@@ -4,7 +4,9 @@ import 'package:core/common/exception.dart';
 import 'package:core/common/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:tv/data/datasources/tv_remote_data_source.dart';
+import 'package:tv/domain/entities/season_detail.dart';
 import 'package:tv/domain/entities/tv_series.dart';
+import 'package:tv/domain/entities/tv_series_detail.dart';
 import 'package:tv/domain/repositories/tv_series_repository.dart';
 
 class TvSeriesRepositoryImpl implements TvSeriesRepository {
@@ -67,6 +69,30 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
     try {
       final result = await remoteDataSource.getRecommendationTvSeries(id: id);
       return Right(result.map((model) => model.toEntity()).toList());
+    } on ServerException {
+      return Left(ServerFailure());
+    } on SocketException {
+      return Left(ConnectionFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, SeasonDetail>> getSeasonDetail({required int id, required int seasonNumber}) async {
+    try {
+      final result = await remoteDataSource.getSeasonDetail(id: id, seasonNumber: seasonNumber);
+      return Right(result.toEntity());
+    } on ServerException {
+      return Left(ServerFailure());
+    } on SocketException {
+      return Left(ConnectionFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, TvSeriesDetail>> getTvSeriesDetail({required int id}) async {
+    try {
+      final result = await remoteDataSource.getTvSeriesDetail(id: id);
+      return Right(result.toEntity());
     } on ServerException {
       return Left(ServerFailure());
     } on SocketException {

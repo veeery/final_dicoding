@@ -62,7 +62,7 @@ class MovieDetailContent extends StatelessWidget {
               return Container(
                 padding: EdgeInsets.only(
                   left: 5.w,
-                  top: 5.h,
+                  top: 2.h,
                   right: 5.w,
                 ),
                 decoration: BoxDecoration(
@@ -75,61 +75,58 @@ class MovieDetailContent extends StatelessWidget {
                       margin: EdgeInsets.only(top: 3.h),
                       child: SingleChildScrollView(
                         controller: scrollController,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              movie.title,
-                              style: kHeading5,
+                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Text(
+                            movie.title,
+                            style: kHeading5,
+                          ),
+                          Text(
+                            _showGenres(movie.genres),
+                          ),
+                          Text(
+                            _showDuration(movie.runtime),
+                          ),
+                          ElevatedButton.icon(
+                            key: const Key('watchlist_button'),
+                            onPressed: () async {
+                              _onPressedWatchlistButton(context, message);
+                            },
+                            icon: isWatchlist ? const Icon(Icons.check_rounded) : const Icon(Icons.add_rounded),
+                            label: Text(
+                              'Watchlist',
+                              style: kSubtitle,
                             ),
-                            Text(
-                              _showGenres(movie.genres),
-                            ),
-                            Text(
-                              _showDuration(movie.runtime),
-                            ),
-                            ElevatedButton.icon(
-                              key: const Key('watchlist_button'),
-                              onPressed: () async {
-                                _onPressedWatchlistButton(context, message);
-                              },
-                              icon: isWatchlist ? const Icon(Icons.check_rounded) : const Icon(Icons.add_rounded),
-                              label: Text(
-                                'Watchlist',
-                                style: kSubtitle,
-                              ),
-                            ),
-                            SizedBox(height: 1.h),
-                            Row(
-                              children: [
-                                RatingBarIndicator(
-                                  rating: movie.voteAverage / 2,
-                                  itemCount: 5,
-                                  itemBuilder: (context, index) => const Icon(
-                                    Icons.star,
-                                    color: kMikadoYellow,
-                                  ),
-                                  itemSize: 24,
+                          ),
+                          SizedBox(height: 1.h),
+                          Row(
+                            children: [
+                              RatingBarIndicator(
+                                rating: movie.voteAverage / 2,
+                                itemCount: 5,
+                                itemBuilder: (context, index) => const Icon(
+                                  Icons.star,
+                                  color: kMikadoYellow,
                                 ),
-                                Text('${movie.voteAverage}')
-                              ],
-                            ),
-                            SizedBox(height: 2.h),
-                            Text(
-                              'Overview',
-                              style: kHeading6,
-                            ),
-                            Text(
-                              movie.overview,
-                            ),
-                            SizedBox(height: 2.h),
-                            Text(
-                              'Recommendations',
-                              style: kHeading6,
-                            ),
-                            buildRecommendation()
-                          ]
-                        ),
+                                itemSize: 24,
+                              ),
+                              Text('${movie.voteAverage}')
+                            ],
+                          ),
+                          SizedBox(height: 2.h),
+                          Text(
+                            'Overview',
+                            style: kHeading6,
+                          ),
+                          Text(
+                            movie.overview,
+                          ),
+                          SizedBox(height: 2.h),
+                          Text(
+                            'Recommendations',
+                            style: kHeading6,
+                          ),
+                          buildRecommendation()
+                        ]),
                       ),
                     ),
                     Align(
@@ -175,7 +172,6 @@ class MovieDetailContent extends StatelessWidget {
     }
 
     if (message == watchlistAddSuccessMessage || message == watchlistRemoveSuccessMessage) {
-
       final snackBar = SnackBar(
         backgroundColor: Colors.grey,
         behavior: SnackBarBehavior.floating,
@@ -227,9 +223,6 @@ class MovieDetailContent extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } else if (state is MovieRecommendationLoaded) {
-          if (state.movieRecommendation.isEmpty) {
-            return const Text("There's No Recommendation for this Movie");
-          }
           return SizedBox(
             height: 20.h,
             child: ListView.builder(
@@ -266,7 +259,23 @@ class MovieDetailContent extends StatelessWidget {
             ),
           );
         } else if (state is MovieRecommendationEmpty) {
-          return const Text('-');
+          return Container(
+            decoration: BoxDecoration(
+              color: Colors.grey[800],
+              borderRadius: BorderRadius.circular(8),
+            ),
+            height: 150,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Icon(Icons.tv_off),
+                  SizedBox(height: 2),
+                  Text('No Recommendations'),
+                ],
+              ),
+            ),
+          );
         } else {
           return const Text('Failed');
         }

@@ -1,5 +1,15 @@
+import 'package:core/data/models/genre_model.dart';
+import 'package:core/domain/entities/genre.dart';
+import 'package:tv/data/model/episode_model.dart';
+import 'package:tv/data/model/season_detail_model.dart';
+import 'package:tv/data/model/season_model.dart';
+import 'package:tv/data/model/tv_series_detail_model.dart';
 import 'package:tv/data/model/tv_series_model.dart';
+import 'package:tv/domain/entities/episode.dart';
+import 'package:tv/domain/entities/season.dart';
+import 'package:tv/domain/entities/season_detail.dart';
 import 'package:tv/domain/entities/tv_series.dart';
+import 'package:tv/domain/entities/tv_series_detail.dart';
 
 const tTvSeriesModel = TvSeriesModel(
   posterPath: '/jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg',
@@ -33,4 +43,115 @@ const tTvSeries = TvSeries(
   voteCount: 1172,
   name: 'Game of Thrones',
   originalName: 'Game of Thrones',
+);
+
+const tTvSeriesDetail = TvSeriesDetail(
+  backdropPath: 'backdropPath',
+  firstAirDate: '2022-10-10',
+  genres: [Genre(id: 1, name: 'Drama')],
+  id: 1,
+  lastAirDate: '2022-10-10',
+  name: 'name',
+  numberOfEpisodes: 12,
+  numberOfSeasons: 6,
+  overview: 'overview',
+  posterPath: 'posterPath',
+  seasons: [
+    Season(
+      airDate: '2022-10-10',
+      episodeCount: 15,
+      id: 1,
+      name: 'name',
+      overview: 'overview',
+      posterPath: 'posterPath',
+      seasonNumber: 10,
+    ),
+  ],
+  status: 'status',
+  tagline: 'tagline',
+  type: 'type',
+  voteAverage: 8.3,
+  voteCount: 1200,
+);
+
+final tTvSeriesResponse = TvSeriesDetailResponse(
+  backdropPath: 'backdropPath',
+  firstAirDate: '2022-10-10',
+  genres: [GenreModel(id: 1, name: 'Drama')],
+  homepage: 'https://google.com',
+  id: 1,
+  inProduction: false,
+  languages: ['en'],
+  lastAirDate: '2022-10-10',
+  name: 'name',
+  numberOfEpisodes: 12,
+  numberOfSeasons: 6,
+  originCountry: ['US'],
+  originalLanguage: 'originalLanguage',
+  originalName: 'originalName',
+  overview: 'overview',
+  popularity: 369.0,
+  posterPath: 'posterPath',
+  seasons: const [
+    SeasonModel(
+      airDate: '2022-10-10',
+      episodeCount: 15,
+      id: 1,
+      name: 'name',
+      overview: 'overview',
+      posterPath: 'posterPath',
+      seasonNumber: 10,
+    ),
+  ],
+  status: 'status',
+  tagline: 'tagline',
+  type: 'type',
+  voteAverage: 8.3,
+  voteCount: 1200,
+);
+
+const tSeasonDetailResponse = SeasonDetailResponse(
+  id: 1,
+  airDate: '2020-10-10',
+  episodes: [
+    EpisodeModel(
+      airDate: '2020-10-10',
+      episodeNumber: 1,
+      id: 1,
+      name: 'name',
+      overview: 'overview',
+      productionCode: 'productionCode',
+      seasonNumber: 1,
+      stillPath: 'stillPath',
+      voteAverage: 8.3,
+      voteCount: 1500,
+    )
+  ],
+  name: 'name',
+  overview: 'overview',
+  posterPath: 'posterPath',
+  seasonNumber: 1,
+);
+
+const tSeasonDetail = SeasonDetail(
+  id: 1,
+  airDate: '2020-10-10',
+  episodes: [
+    Episode(
+      airDate: '2020-10-10',
+      episodeNumber: 1,
+      id: 1,
+      name: 'name',
+      overview: 'overview',
+      productionCode: 'productionCode',
+      seasonNumber: 1,
+      stillPath: 'stillPath',
+      voteAverage: 8.3,
+      voteCount: 1500,
+    )
+  ],
+  name: 'name',
+  overview: 'overview',
+  posterPath: 'posterPath',
+  seasonNumber: 1,
 );

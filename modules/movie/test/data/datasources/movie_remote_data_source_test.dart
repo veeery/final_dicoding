@@ -46,11 +46,11 @@ void main() {
     });
   });
 
-  group('Get Movie detail', () {
+  group('Get Movie detail.json', () {
     int tId = 1;
     final tMovieDetail = MovieDetailResponse.fromJson(json.decode(readJson('dummy_data/movie_detail.json')));
 
-    test('should return movie detail when the response code is 200', () async {
+    test('should return movie detail.json when the response code is 200', () async {
       // arrange
       when(mockHttpClient.get(Uri.parse('$BASE_URL/movie/$tId?$API_KEY')))
           .thenAnswer((_) async => http.Response(readJson('dummy_data/movie_detail.json'), 200));

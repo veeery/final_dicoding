@@ -20,11 +20,16 @@ import 'package:movie/presentation/pages/now_playing_movies_page.dart';
 import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:movie/presentation/pages/search_movie_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
+import 'package:tv/presentation/bloc/detail_season/season_detail_bloc.dart';
+import 'package:tv/presentation/bloc/detail_tv_series/detail_tv_series_bloc.dart';
 import 'package:tv/presentation/bloc/on_the_air/on_the_air_bloc.dart';
 import 'package:tv/presentation/bloc/popular_tv/popular_tv_bloc.dart';
 import 'package:tv/presentation/bloc/recommendation_tv/recommendation_tv_bloc.dart';
+import 'package:tv/presentation/bloc/search_tv_series/search_tv_series_bloc.dart';
 import 'package:tv/presentation/bloc/top_rated_tv/top_rated_tv_bloc.dart';
+import 'package:tv/presentation/pages/detail_tv_page.dart';
 import 'package:tv/presentation/pages/popular_tv_page.dart';
+import 'package:tv/presentation/pages/search_tv_series_page.dart';
 import 'package:tv/presentation/pages/top_rated_tv_page.dart';
 import 'package:tv/presentation/pages/tv_series_home_page.dart';
 
@@ -85,6 +90,15 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (_) => di.locator<PopularTvBloc>(),
           ),
+          BlocProvider(
+            create: (_) => di.locator<SearchTvSeriesBloc>(),
+          ),
+          BlocProvider(
+            create: (_) => di.locator<DetailTvSeriesBloc>(),
+          ),
+          BlocProvider(
+            create: (_) => di.locator<SeasonDetailBloc>(),
+          ),
         ],
         child: MaterialApp(
             theme: ThemeData.dark().copyWith(
@@ -136,7 +150,14 @@ class MyApp extends StatelessWidget {
                   return MaterialPageRoute(builder: (_) => const PopularTvSeriesPage());
                 case TopRatedTvSeriesPage.routeName:
                   return MaterialPageRoute(builder: (_) => const TopRatedTvSeriesPage());
-
+                case SearchTvSeriesPage.routeName:
+                  return MaterialPageRoute(builder: (_) => const SearchTvSeriesPage());
+                case DetailTvPage.routeName:
+                  final id = settings.arguments as int;
+                  return MaterialPageRoute(
+                    builder: (_) => DetailTvPage(id: id),
+                    settings: settings,
+                  );
                 // Watchlist
                 case WatchlistPage.routeName:
                   return MaterialPageRoute(builder: (_) => const WatchlistPage());

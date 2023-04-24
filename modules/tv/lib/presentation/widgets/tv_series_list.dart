@@ -3,6 +3,7 @@ import 'package:core/common/constants.dart';
 import 'package:core/common/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:tv/domain/entities/tv_series.dart';
+import 'package:tv/presentation/pages/detail_tv_page.dart';
 
 class TvSeriesList extends StatelessWidget {
   final List<TvSeries> tvSeriesList;
@@ -21,11 +22,11 @@ class TvSeriesList extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 1.w),
             child: InkWell(
               onTap: () {
-                // Navigator.pushNamed(
-                //   context,
-                //   MovieDetailPage.routeName,
-                //   arguments: tv.id,
-                // );
+                Navigator.pushNamed(
+                  context,
+                  DetailTvPage.routeName,
+                  arguments: tv.id,
+                );
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(1.w)),

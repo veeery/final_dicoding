@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv/presentation/bloc/on_the_air/on_the_air_bloc.dart';
 import 'package:tv/presentation/bloc/top_rated_tv/top_rated_tv_bloc.dart';
 import 'package:tv/presentation/pages/on_the_air_page.dart';
+import 'package:tv/presentation/pages/search_tv_series_page.dart';
 import 'package:tv/presentation/pages/top_rated_tv_page.dart';
 import 'package:tv/presentation/widgets/tv_series_list.dart';
 
@@ -34,7 +35,7 @@ class _TvSeriesHomePageState extends State<TvSeriesHomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              // Navigator.pushNamed(context, SearchMoviePage.routeName);
+              Navigator.pushNamed(context, SearchTvSeriesPage.routeName);
             },
             icon: const Icon(Icons.search),
           )

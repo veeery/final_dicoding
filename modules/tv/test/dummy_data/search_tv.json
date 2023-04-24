@@ -1,0 +1,28 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "backdrop_path": "/gpJZiTvklr5JN0mzpQwl99peQD7.jpg",
+      "genre_ids": [
+        10765,
+        35,
+        10759
+      ],
+      "id": 2287,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Batman",
+      "overview": "Wealthy entrepreneur Bruce Wayne and his ward Dick Grayson lead a double life: they are actually crime fighting duo Batman and Robin. A secret Batpole in the Wayne mansion leads to the Batcave, where Police Commissioner Gordon often calls with the latest emergency threatening Gotham City. Racing to the scene of the crime in the Batmobile, Batman and Robin must (with the help of their trusty Bat-utility-belt) thwart the efforts of a variety of master criminals, including The Riddler, The Joker, Catwoman, and The Penguin.",
+      "popularity": 114.969,
+      "poster_path": "/eJWKgqICVxgDOOWRNBQ7b6Hh5Xb.jpg",
+      "first_air_date": "1966-01-12",
+      "name": "Batman",
+      "vote_average": 7.428,
+      "vote_count": 437
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 6
+}
