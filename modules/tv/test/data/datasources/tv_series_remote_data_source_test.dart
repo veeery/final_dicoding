@@ -43,4 +43,53 @@ void main() {
     });
 
   });
+
+  group('Get Top Rated Tv Series', () {
+    final tTvSeriesList = TvSeriesResponse.fromJson(json.decode(readJson('dummy_data/top_rated.json'))).tvSeriesList;
+
+    test('Should return list of Tv series', () async {
+      // arrange
+      when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/top_rated?$API_KEY')))
+          .thenAnswer((_) async => http.Response(readJson('dummy_data/top_rated.json'), 200));
+      // act
+      final result = await dataSource.getTopRatedTvSeries();
+      // assert
+      expect(result, equals(tTvSeriesList));
+    });
+    test('Should return Server Exception', () async {
+      // arrange
+      when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/top_rated?$API_KEY')))
+          .thenAnswer((_) async => http.Response(readJson('dummy_data/top_rated.json'), 404));
+      // act
+      final result = dataSource.getTopRatedTvSeries();
+      // assert
+      expect(() => result, throwsA(isA<ServerException>()));
+    });
+
+  });
+
+  group('Get Popular Tv Series', () {
+    final tTvSeriesList = TvSeriesResponse.fromJson(json.decode(readJson('dummy_data/popular.json'))).tvSeriesList;
+
+    test('Should return list of Tv series', () async {
+      // arrange
+      when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/popular?$API_KEY')))
+          .thenAnswer((_) async => http.Response(readJson('dummy_data/popular.json'), 200));
+      // act
+      final result = await dataSource.getPopularTvSeries();
+      // assert
+      expect(result, equals(tTvSeriesList));
+    });
+    test('Should return Server Exception', () async {
+      // arrange
+      when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/popular?$API_KEY')))
+          .thenAnswer((_) async => http.Response(readJson('dummy_data/popular.json'), 404));
+      // act
+      final result = dataSource.getPopularTvSeries();
+      // assert
+      expect(() => result, throwsA(isA<ServerException>()));
+    });
+
+  });
+
 }

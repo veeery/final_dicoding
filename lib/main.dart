@@ -21,6 +21,11 @@ import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:movie/presentation/pages/search_movie_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
 import 'package:tv/presentation/bloc/on_the_air/on_the_air_bloc.dart';
+import 'package:tv/presentation/bloc/popular_tv/popular_tv_bloc.dart';
+import 'package:tv/presentation/bloc/recommendation_tv/recommendation_tv_bloc.dart';
+import 'package:tv/presentation/bloc/top_rated_tv/top_rated_tv_bloc.dart';
+import 'package:tv/presentation/pages/popular_tv_page.dart';
+import 'package:tv/presentation/pages/top_rated_tv_page.dart';
 import 'package:tv/presentation/pages/tv_series_home_page.dart';
 
 import 'injection.dart' as di;
@@ -35,7 +40,7 @@ void main() async {
 
   di.init();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -70,6 +75,15 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => di.locator<OnTheAirBloc>(),
+          ),
+          BlocProvider(
+            create: (_) => di.locator<TopRatedTvBloc>(),
+          ),
+          BlocProvider(
+            create: (_) => di.locator<RecommendationTvBloc>(),
+          ),
+          BlocProvider(
+            create: (_) => di.locator<PopularTvBloc>(),
           ),
         ],
         child: MaterialApp(
@@ -118,6 +132,10 @@ class MyApp extends StatelessWidget {
                 // Tv Series
                 case TvSeriesHomePage.routeName:
                   return MaterialPageRoute(builder: (_) => const TvSeriesHomePage());
+                case PopularTvSeriesPage.routeName:
+                  return MaterialPageRoute(builder: (_) => const PopularTvSeriesPage());
+                case TopRatedTvSeriesPage.routeName:
+                  return MaterialPageRoute(builder: (_) => const TopRatedTvSeriesPage());
 
                 // Watchlist
                 case WatchlistPage.routeName:

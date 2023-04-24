@@ -26,7 +26,13 @@ import 'package:tv/data/datasources/tv_remote_data_source.dart';
 import 'package:tv/data/repositories/tv_repository_impl.dart';
 import 'package:tv/domain/repositories/tv_series_repository.dart';
 import 'package:tv/domain/usecases/get_on_the_air.dart';
+import 'package:tv/domain/usecases/get_popular.dart';
+import 'package:tv/domain/usecases/get_top_rated.dart';
+import 'package:tv/domain/usecases/get_tv_recommendations.dart';
 import 'package:tv/presentation/bloc/on_the_air/on_the_air_bloc.dart';
+import 'package:tv/presentation/bloc/popular_tv/popular_tv_bloc.dart';
+import 'package:tv/presentation/bloc/recommendation_tv/recommendation_tv_bloc.dart';
+import 'package:tv/presentation/bloc/top_rated_tv/top_rated_tv_bloc.dart';
 
 final locator = GetIt.instance;
 
@@ -85,8 +91,14 @@ void injectionMovie() {
 void injectionTvSeries() {
   // BloC
   locator.registerFactory(() => OnTheAirBloc(getOnTheAirTvSeries: locator()));
+  locator.registerFactory(() => PopularTvBloc(getPopularTvSeries: locator()));
+  locator.registerFactory(() => TopRatedTvBloc(getTopRatedTvSeries: locator()));
+  locator.registerFactory(() => RecommendationTvBloc(getRecommendationTvSeries: locator()));
   // Use Case
   locator.registerLazySingleton(() => GetOnTheAirTvSeries(locator()));
+  locator.registerLazySingleton(() => GetPopularTvSeries(locator()));
+  locator.registerLazySingleton(() => GetTopRatedTvSeries(locator()));
+  locator.registerLazySingleton(() => GetRecommendationTvSeries(locator()));
   // Repository
   locator.registerLazySingleton<TvSeriesRepository>(
     () => TvSeriesRepositoryImpl(

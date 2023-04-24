@@ -84,6 +84,79 @@ class MockTvSeriesRepository extends _i1.Mock
               ),
             )),
           ) as _i5.Future<_i2.Either<_i6.Failure, List<_i7.TvSeries>>>);
+  @override
+  _i5.Future<_i2.Either<_i6.Failure, List<_i7.TvSeries>>>
+      getPopularTvSeries() => (super.noSuchMethod(
+            Invocation.method(
+              #getPopularTvSeries,
+              [],
+            ),
+            returnValue:
+                _i5.Future<_i2.Either<_i6.Failure, List<_i7.TvSeries>>>.value(
+                    _FakeEither_0<_i6.Failure, List<_i7.TvSeries>>(
+              this,
+              Invocation.method(
+                #getPopularTvSeries,
+                [],
+              ),
+            )),
+          ) as _i5.Future<_i2.Either<_i6.Failure, List<_i7.TvSeries>>>);
+  @override
+  _i5.Future<_i2.Either<_i6.Failure, List<_i7.TvSeries>>>
+      getTopRatedTvSeries() => (super.noSuchMethod(
+            Invocation.method(
+              #getTopRatedTvSeries,
+              [],
+            ),
+            returnValue:
+                _i5.Future<_i2.Either<_i6.Failure, List<_i7.TvSeries>>>.value(
+                    _FakeEither_0<_i6.Failure, List<_i7.TvSeries>>(
+              this,
+              Invocation.method(
+                #getTopRatedTvSeries,
+                [],
+              ),
+            )),
+          ) as _i5.Future<_i2.Either<_i6.Failure, List<_i7.TvSeries>>>);
+  @override
+  _i5.Future<_i2.Either<_i6.Failure, List<_i7.TvSeries>>> searchTvSeries(
+          {required String? query}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #searchTvSeries,
+          [],
+          {#query: query},
+        ),
+        returnValue:
+            _i5.Future<_i2.Either<_i6.Failure, List<_i7.TvSeries>>>.value(
+                _FakeEither_0<_i6.Failure, List<_i7.TvSeries>>(
+          this,
+          Invocation.method(
+            #searchTvSeries,
+            [],
+            {#query: query},
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i6.Failure, List<_i7.TvSeries>>>);
+  @override
+  _i5.Future<_i2.Either<_i6.Failure, List<_i7.TvSeries>>>
+      getRecommendationTvSeries({required int? id}) => (super.noSuchMethod(
+            Invocation.method(
+              #getRecommendationTvSeries,
+              [],
+              {#id: id},
+            ),
+            returnValue:
+                _i5.Future<_i2.Either<_i6.Failure, List<_i7.TvSeries>>>.value(
+                    _FakeEither_0<_i6.Failure, List<_i7.TvSeries>>(
+              this,
+              Invocation.method(
+                #getRecommendationTvSeries,
+                [],
+                {#id: id},
+              ),
+            )),
+          ) as _i5.Future<_i2.Either<_i6.Failure, List<_i7.TvSeries>>>);
 }
 
 /// A class which mocks [TvRemoteDataSource].
@@ -101,6 +174,50 @@ class MockTvRemoteDataSource extends _i1.Mock
         Invocation.method(
           #getOnTheAirTvSeries,
           [],
+        ),
+        returnValue:
+            _i5.Future<List<_i9.TvSeriesModel>>.value(<_i9.TvSeriesModel>[]),
+      ) as _i5.Future<List<_i9.TvSeriesModel>>);
+  @override
+  _i5.Future<List<_i9.TvSeriesModel>> getPopularTvSeries() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getPopularTvSeries,
+          [],
+        ),
+        returnValue:
+            _i5.Future<List<_i9.TvSeriesModel>>.value(<_i9.TvSeriesModel>[]),
+      ) as _i5.Future<List<_i9.TvSeriesModel>>);
+  @override
+  _i5.Future<List<_i9.TvSeriesModel>> getTopRatedTvSeries() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTopRatedTvSeries,
+          [],
+        ),
+        returnValue:
+            _i5.Future<List<_i9.TvSeriesModel>>.value(<_i9.TvSeriesModel>[]),
+      ) as _i5.Future<List<_i9.TvSeriesModel>>);
+  @override
+  _i5.Future<List<_i9.TvSeriesModel>> searchTvSeries(
+          {required String? query}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #searchTvSeries,
+          [],
+          {#query: query},
+        ),
+        returnValue:
+            _i5.Future<List<_i9.TvSeriesModel>>.value(<_i9.TvSeriesModel>[]),
+      ) as _i5.Future<List<_i9.TvSeriesModel>>);
+  @override
+  _i5.Future<List<_i9.TvSeriesModel>> getRecommendationTvSeries(
+          {required int? id}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRecommendationTvSeries,
+          [],
+          {#id: id},
         ),
         returnValue:
             _i5.Future<List<_i9.TvSeriesModel>>.value(<_i9.TvSeriesModel>[]),

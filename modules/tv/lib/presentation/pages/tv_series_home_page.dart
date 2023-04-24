@@ -2,7 +2,9 @@ import 'package:core/presentation/widgets/app_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv/presentation/bloc/on_the_air/on_the_air_bloc.dart';
+import 'package:tv/presentation/bloc/top_rated_tv/top_rated_tv_bloc.dart';
 import 'package:tv/presentation/pages/on_the_air_page.dart';
+import 'package:tv/presentation/pages/top_rated_tv_page.dart';
 import 'package:tv/presentation/widgets/tv_series_list.dart';
 
 class TvSeriesHomePage extends StatefulWidget {
@@ -20,6 +22,7 @@ class _TvSeriesHomePageState extends State<TvSeriesHomePage> {
     super.initState();
     Future.microtask(() {
       context.read<OnTheAirBloc>().add(FetchOnTheAir());
+      context.read<TopRatedTvBloc>().add(FetchTopRatedTvSeries());
     });
   }
 
@@ -51,6 +54,28 @@ class _TvSeriesHomePageState extends State<TvSeriesHomePage> {
                   } else if (state is OnTheAirLoaded) {
                     return TvSeriesList(tvSeriesList: state.tvSeriesList);
                   } else if (state is OnTheAirError) {
+                    return Center(
+                      child: Text(state.message),
+                    );
+                  } else {
+                    return const Center(
+                      child: Text('Unknown Error'),
+                    );
+                  }
+                },
+              )),
+          AppHeading(
+              title: 'Top Rated TV Series',
+              onTap: () => Navigator.pushNamed(context, TopRatedTvSeriesPage.routeName),
+              child: BlocBuilder<TopRatedTvBloc, TopRatedTvState>(
+                builder: (context, state) {
+                  if (state is TopRatedTvLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is TopRatedTvLoaded) {
+                    return TvSeriesList(tvSeriesList: state.topRatedList);
+                  } else if (state is TopRatedTvError) {
                     return Center(
                       child: Text(state.message),
                     );

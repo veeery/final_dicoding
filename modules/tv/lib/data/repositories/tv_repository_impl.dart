@@ -25,4 +25,52 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ConnectionFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<TvSeries>>> getPopularTvSeries() async {
+    try {
+      final result = await remoteDataSource.getPopularTvSeries();
+      return Right(result.map((model) => model.toEntity()).toList());
+    } on ServerException {
+      return Left(ServerFailure());
+    } on SocketException {
+      return Left(ConnectionFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<TvSeries>>> getTopRatedTvSeries() async {
+    try {
+      final result = await remoteDataSource.getTopRatedTvSeries();
+      return Right(result.map((model) => model.toEntity()).toList());
+    } on ServerException {
+      return Left(ServerFailure());
+    } on SocketException {
+      return Left(ConnectionFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<TvSeries>>> searchTvSeries({required String query}) async {
+    try {
+      final result = await remoteDataSource.searchTvSeries(query: query);
+      return Right(result.map((model) => model.toEntity()).toList());
+    } on ServerException {
+      return Left(ServerFailure());
+    } on SocketException {
+      return Left(ConnectionFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<TvSeries>>> getRecommendationTvSeries({required int id}) async {
+    try {
+      final result = await remoteDataSource.getRecommendationTvSeries(id: id);
+      return Right(result.map((model) => model.toEntity()).toList());
+    } on ServerException {
+      return Left(ServerFailure());
+    } on SocketException {
+      return Left(ConnectionFailure());
+    }
+  }
 }

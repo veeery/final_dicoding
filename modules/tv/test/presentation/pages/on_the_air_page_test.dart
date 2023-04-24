@@ -1,13 +1,7 @@
-import 'dart:convert';
-
 import 'package:bloc_test/bloc_test.dart';
-import 'package:core/common/constants.dart';
-import 'package:core/common/exception.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
-import 'package:mockito/annotations.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:tv/presentation/bloc/on_the_air/on_the_air_bloc.dart';
 import 'package:tv/presentation/pages/on_the_air_page.dart';
@@ -19,7 +13,6 @@ class MockOnTheAirBloc extends MockBloc<OnTheAirEvent, OnTheAirState> implements
 class FakeOnTheAirEvent extends Fake implements OnTheAirEvent {}
 
 class FakeOnTheAirState extends Fake implements OnTheAirEvent {}
-
 
 void main() {
   late MockOnTheAirBloc mockBloc;
@@ -71,5 +64,4 @@ void main() {
 
     expect(textFinder, findsOneWidget);
   });
-
 }

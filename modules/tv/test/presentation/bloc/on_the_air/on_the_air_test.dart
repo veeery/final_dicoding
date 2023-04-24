@@ -1,12 +1,7 @@
-import 'dart:convert';
-
 import 'package:bloc_test/bloc_test.dart';
-import 'package:core/common/constants.dart';
-import 'package:core/common/exception.dart';
 import 'package:core/common/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:tv/domain/entities/tv_series.dart';
@@ -67,5 +62,4 @@ void main() {
       FetchOnTheAir().props,
     ],
   );
-
 }
