@@ -65,7 +65,6 @@ void main() {
     ], child: MaterialApp(home: body));
   }
 
-  
   group('TV Series Detail Page', () {
     testWidgets('Page should display center progress bar when loading', (WidgetTester tester) async {
       when(() => mockBloc.state).thenReturn(DetailTvSeriesLoading());
@@ -90,13 +89,13 @@ void main() {
 
       expect(textFinder, findsOneWidget);
     });
-
   });
 
   group('Tv Detail, Recommendation State & Watchlist Status', () {
     testWidgets('Page should display ListView when data is loaded', (WidgetTester tester) async {
       when(() => mockBloc.state).thenReturn(DetailTvSeriesLoaded(result: tTvSeriesDetail));
-      when(() => mockRecommendationTvBloc.state).thenReturn(RecommendationTvLoaded(recommendationList: const [tTvSeries]));
+      when(() => mockRecommendationTvBloc.state)
+          .thenReturn(RecommendationTvLoaded(recommendationList: const [tTvSeries]));
       when(() => mockWatchlistTvBloc.state).thenReturn(WatchlistTvSeriesLoaded(result: const [tTvSeries]));
 
       final result = find.byKey(const Key('build_tv_recommendations'));
@@ -105,10 +104,35 @@ void main() {
 
       expect(result, findsOneWidget);
     });
+
+    testWidgets('Page should return MovieDetail & Recommendation with Watchlist status FALSE',
+        (WidgetTester tester) async {
+      when(() => mockBloc.state).thenReturn(DetailTvSeriesLoaded(result: tTvSeriesDetail));
+      when(() => mockRecommendationTvBloc.state)
+          .thenReturn(RecommendationTvLoaded(recommendationList: const [tTvSeries]));
+      when(() => mockWatchlistTvBloc.state).thenReturn(WatchlistTvSeriesStatus(isAdded: false));
+
+      final result = find.byKey(const Key('build_tv_recommendations'));
+
+      await tester.pumpWidget(makeTestableWidget(const DetailTvPage(id: tId)));
+
+      expect(result, findsOneWidget);
+    });
+
+    testWidgets('Page Should return SnackBar when clicked', (WidgetTester tester) async {
+      when(() => mockBloc.state).thenReturn(DetailTvSeriesLoaded(result: tTvSeriesDetail));
+      when(() => mockRecommendationTvBloc.state)
+          .thenReturn(RecommendationTvLoaded(recommendationList: const [tTvSeries]));
+      when(() => mockWatchlistTvBloc.state).thenReturn(WatchlistTvSeriesStatus(isAdded: false));
+
+      await tester.pumpWidget(makeTestableWidget(const DetailTvPage(id: tId)));
+      final snackBarTextFinder = find.text('Added to Watchlist');
+      expect(snackBarTextFinder, findsNothing);
+
+      await tester.tap(find.byKey(const Key('watchlist_button')));
+      expect(snackBarTextFinder, findsNothing);
+      await tester.pump();
+      expect(snackBarTextFinder, findsOneWidget);
+    });
   });
-  
-
-
-
-
 }
