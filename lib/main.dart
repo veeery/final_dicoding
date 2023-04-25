@@ -30,6 +30,7 @@ import 'package:tv/presentation/bloc/search_tv_series/search_tv_series_bloc.dart
 import 'package:tv/presentation/bloc/top_rated_tv/top_rated_tv_bloc.dart';
 import 'package:tv/presentation/bloc/watchlist_tv_series/watchlist_tv_series_bloc.dart';
 import 'package:tv/presentation/pages/detail_tv_page.dart';
+import 'package:tv/presentation/pages/on_the_air_page.dart';
 import 'package:tv/presentation/pages/popular_tv_page.dart';
 import 'package:tv/presentation/pages/search_tv_series_page.dart';
 import 'package:tv/presentation/pages/top_rated_tv_page.dart';
@@ -153,6 +154,8 @@ class MyApp extends StatelessWidget {
                 // Tv Series
                 case TvSeriesHomePage.routeName:
                   return MaterialPageRoute(builder: (_) => const TvSeriesHomePage());
+                case OnTheAirPage.routeName:
+                  return MaterialPageRoute(builder: (_) => const OnTheAirPage());
                 case PopularTvSeriesPage.routeName:
                   return MaterialPageRoute(builder: (_) => const PopularTvSeriesPage());
                 case TopRatedTvSeriesPage.routeName:

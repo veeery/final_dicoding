@@ -6,7 +6,7 @@ import 'package:tv/presentation/bloc/top_rated_tv/top_rated_tv_bloc.dart';
 import '../widgets/tv_series_card.dart';
 
 class TopRatedTvSeriesPage extends StatefulWidget {
-  static const routeName = '/on-the-air';
+  static const routeName = '/top-rated-tv-page';
 
   const TopRatedTvSeriesPage({Key? key}) : super(key: key);
 
@@ -28,7 +28,7 @@ class _TopRatedTvSeriesPageState extends State<TopRatedTvSeriesPage> {
     AppResponsive.init(context: context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('On The Air'),
+        title: const Text('Top Rated TV Series'),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 3.w),
