@@ -2,7 +2,7 @@
 
 
 CodeMagic Status Badge
-https://api.codemagic.io/apps/643ba7734ac07468ecdd335f/workflow_testing/status_badge.svg
+[![Codemagic build status](https://api.codemagic.io/apps/643ba7734ac07468ecdd335f/workflow_testing/status_badge.svg)](https://codemagic.io/apps/643ba7734ac07468ecdd335f/workflow_testing/latest_build)
 
 Tools :
 1. Flutter
