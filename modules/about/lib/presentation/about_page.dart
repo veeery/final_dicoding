@@ -47,6 +47,14 @@ class AboutPage extends StatelessWidget {
                         const Text('0896-9339-9496'),
                       ],
                     ),
+                    SizedBox(height: 2.h),
+                    ElevatedButton(
+                      onPressed: () async {
+                        // FirebaseCrashlytics.instance.crash();
+                        throw Exception();
+                      },
+                      child: const Text('Test Crash Firebase'),
+                    ),
                   ],
                 ),
               )
