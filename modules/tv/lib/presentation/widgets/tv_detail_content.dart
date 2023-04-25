@@ -163,7 +163,10 @@ class TvDetailContent extends StatelessWidget {
               backgroundColor: kRichBlack,
               foregroundColor: Colors.white,
               child: IconButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () {
+                  context.read<WatchlistTvSeriesBloc>().add(FetchWatchlistTvSeries());
+                  Navigator.pop(context);
+                },
                 icon: const Icon(Icons.arrow_back_rounded),
                 tooltip: 'Back',
               ),

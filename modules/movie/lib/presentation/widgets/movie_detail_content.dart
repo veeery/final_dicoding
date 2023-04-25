@@ -47,7 +47,8 @@ class MovieDetailContent extends StatelessWidget {
         CachedNetworkImage(
           imageUrl: 'https://image.tmdb.org/t/p/w500${movie.posterPath}',
           width: 100.w,
-          placeholder: (context, url) => const Center(
+          placeholder: (context, url) =>
+          const Center(
             child: CircularProgressIndicator(),
           ),
           errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -103,7 +104,8 @@ class MovieDetailContent extends StatelessWidget {
                               RatingBarIndicator(
                                 rating: movie.voteAverage / 2,
                                 itemCount: 5,
-                                itemBuilder: (context, index) => const Icon(
+                                itemBuilder: (context, index) =>
+                                const Icon(
                                   Icons.star,
                                   color: kMikadoYellow,
                                 ),
@@ -153,7 +155,10 @@ class MovieDetailContent extends StatelessWidget {
               backgroundColor: kRichBlack,
               foregroundColor: Colors.white,
               child: IconButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () {
+                  context.read<WatchlistMovieBloc>().add(FetchWatchlistMovie());
+                  Navigator.pop(context);
+                },
                 icon: const Icon(Icons.arrow_back_rounded),
                 tooltip: 'Back',
               ),
@@ -246,7 +251,8 @@ class MovieDetailContent extends StatelessWidget {
                       ),
                       child: CachedNetworkImage(
                         imageUrl: 'https://image.tmdb.org/t/p/w500${movieRecommendation.posterPath}',
-                        placeholder: (context, url) => const Center(
+                        placeholder: (context, url) =>
+                        const Center(
                           child: CircularProgressIndicator(),
                         ),
                         errorWidget: (context, url, error) => const Icon(Icons.error),
