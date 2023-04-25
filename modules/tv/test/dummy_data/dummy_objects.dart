@@ -5,6 +5,7 @@ import 'package:tv/data/model/season_detail_model.dart';
 import 'package:tv/data/model/season_model.dart';
 import 'package:tv/data/model/tv_series_detail_model.dart';
 import 'package:tv/data/model/tv_series_model.dart';
+import 'package:tv/data/model/tv_series_table.dart';
 import 'package:tv/domain/entities/episode.dart';
 import 'package:tv/domain/entities/season.dart';
 import 'package:tv/domain/entities/season_detail.dart';
@@ -154,4 +155,25 @@ const tSeasonDetail = SeasonDetail(
   overview: 'overview',
   posterPath: 'posterPath',
   seasonNumber: 1,
+);
+
+const tTvSeriesTable = TvSeriesTable(
+  id: 1,
+  name: 'name',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
+final tTvSeriesMap = {
+  'id': 1,
+  'overview': 'overview',
+  'posterPath': 'posterPath',
+  'name': 'name',
+};
+
+const tWatchlistTvSeries = TvSeries.watchlist(
+  id: 1,
+  name: 'name',
+  posterPath: 'posterPath',
+  overview: 'overview',
 );

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/watchlist_movie/watchlist_movie_bloc.dart';
 import 'package:movie/presentation/widgets/movie_card.dart';
+import 'package:tv/presentation/bloc/watchlist_tv_series/watchlist_tv_series_bloc.dart';
+import 'package:tv/presentation/widgets/tv_series_card.dart';
 
 class WatchlistPage extends StatefulWidget {
   static const routeName = '/watchlist';
@@ -19,6 +21,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
     super.initState();
     Future.microtask(() {
       context.read<WatchlistMovieBloc>().add(FetchWatchlistMovie());
+      context.read<WatchlistTvSeriesBloc>().add(FetchWatchlistTvSeries());
     });
   }
 
@@ -84,6 +87,35 @@ class _WatchlistPageState extends State<WatchlistPage> {
                       }
                     },
                   ),
+                  BlocBuilder<WatchlistTvSeriesBloc, WatchlistTvSeriesState>(
+                    builder: (context, state) {
+                      if (state is WatchlistTvSeriesLoading) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else if (state is WatchlistTvSeriesLoaded) {
+                        return SizedBox(
+                          height: 140 * state.result.length.toDouble(),
+                          child: ListView.builder(
+                            itemCount: state.result.length,
+                            itemBuilder: (context, index) {
+                              final watchlistTv = state.result[index];
+                              return TvSeriesCard(tvSeries: watchlistTv);
+                            },
+                          ),
+                        );
+                      } else if (state is WatchlistTvSeriesError) {
+                        return Center(
+                          key: const Key('error_message'),
+                          child: Text(state.message),
+                        );
+                      } else {
+                        return const Center(
+                          child: Text('Empty'),
+                        );
+                      }
+                    },
+                  )
                 ],
               ),
             )

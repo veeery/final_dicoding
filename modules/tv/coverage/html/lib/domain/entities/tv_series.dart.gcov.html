@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">16</td>
             <td class="headerCovTableEntry">17</td>
-            <td class="headerCovTableEntryHi">94.1 %</td>
+            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">Tue Apr 25 00:24:40 2023</td>
+            <td class="headerValue">Tue Apr 25 07:56:18 2023</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -63,7 +63,7 @@
 <a name="1"><span class="lineNum">       1 </span>            : import 'package:equatable/equatable.dart';</a>
 <a name="2"><span class="lineNum">       2 </span>            : </a>
 <a name="3"><span class="lineNum">       3 </span>            : class TvSeries extends Equatable {</a>
-<a name="4"><span class="lineNum">       4 </span><span class="lineCov">         16 :   const TvSeries({</span></a>
+<a name="4"><span class="lineNum">       4 </span><span class="lineCov">         21 :   const TvSeries({</span></a>
 <a name="5"><span class="lineNum">       5 </span>            :     required this.posterPath,</a>
 <a name="6"><span class="lineNum">       6 </span>            :     required this.popularity,</a>
 <a name="7"><span class="lineNum">       7 </span>            :     required this.id,</a>
@@ -79,7 +79,7 @@
 <a name="17"><span class="lineNum">      17 </span>            :     required this.originalName,</a>
 <a name="18"><span class="lineNum">      18 </span>            :   });</a>
 <a name="19"><span class="lineNum">      19 </span>            : </a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineNoCov">          0 :   const TvSeries.watchlist({</span></a>
+<a name="20"><span class="lineNum">      20 </span><span class="lineCov">         21 :   const TvSeries.watchlist({</span></a>
 <a name="21"><span class="lineNum">      21 </span>            :     required this.id,</a>
 <a name="22"><span class="lineNum">      22 </span>            :     required this.name,</a>
 <a name="23"><span class="lineNum">      23 </span>            :     required this.overview,</a>
@@ -109,21 +109,21 @@
 <a name="47"><span class="lineNum">      47 </span>            :   final String? name;</a>
 <a name="48"><span class="lineNum">      48 </span>            :   final String? originalName;</a>
 <a name="49"><span class="lineNum">      49 </span>            : </a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineCov">          6 :   @override</span></a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineCov">          6 :   List&lt;Object?&gt; get props =&gt; [</span></a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineCov">          6 :     posterPath,</span></a>
-<a name="53"><span class="lineNum">      53 </span><span class="lineCov">          6 :     popularity,</span></a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineCov">          6 :     id,</span></a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineCov">          6 :     backdropPath,</span></a>
-<a name="56"><span class="lineNum">      56 </span><span class="lineCov">          6 :     voteAverage,</span></a>
-<a name="57"><span class="lineNum">      57 </span><span class="lineCov">          6 :     overview,</span></a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">          6 :     firstAirDate,</span></a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">          6 :     originCountry,</span></a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">          6 :     genreIds,</span></a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">          6 :     originalLanguage,</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineCov">          6 :     voteCount,</span></a>
-<a name="63"><span class="lineNum">      63 </span><span class="lineCov">          6 :     name,</span></a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">          6 :     originalName,</span></a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineCov">          8 :   @override</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">          8 :   List&lt;Object?&gt; get props =&gt; [</span></a>
+<a name="52"><span class="lineNum">      52 </span><span class="lineCov">          8 :     posterPath,</span></a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineCov">          8 :     popularity,</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">          8 :     id,</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineCov">          8 :     backdropPath,</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">          8 :     voteAverage,</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">          8 :     overview,</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">          8 :     firstAirDate,</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">          8 :     originCountry,</span></a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineCov">          8 :     genreIds,</span></a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">          8 :     originalLanguage,</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">          8 :     voteCount,</span></a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineCov">          8 :     name,</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">          8 :     originalName,</span></a>
 <a name="65"><span class="lineNum">      65 </span>            :   ];</a>
 <a name="66"><span class="lineNum">      66 </span>            : }</a>
 </pre>

@@ -11,17 +11,37 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:tv/domain/entities/tv_series.dart';
 import 'package:tv/domain/entities/tv_series_detail.dart';
 import 'package:tv/presentation/bloc/recommendation_tv/recommendation_tv_bloc.dart';
+import 'package:tv/presentation/bloc/watchlist_tv_series/watchlist_tv_series_bloc.dart';
 import 'package:tv/presentation/pages/detail_tv_page.dart';
 import 'package:tv/presentation/widgets/tv_season_episode_widget.dart';
 
 class TvDetailContent extends StatelessWidget {
   final TvSeriesDetail tvSeriesDetail;
+  final bool isWatchlist;
 
-  const TvDetailContent(this.tvSeriesDetail, {super.key});
+  static const watchlistAddSuccessMessage = 'Added to Watchlist';
+  static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
+
+  const TvDetailContent(this.tvSeriesDetail, this.isWatchlist, {super.key});
 
   @override
   Widget build(BuildContext context) {
     AppResponsive.init(context: context);
+
+    String message = '';
+
+    message = context.select<WatchlistTvSeriesBloc, String>((value) {
+      final state = value.state;
+      if (state is WatchlistTvSeriesStatus) {
+        if (!state.isAdded) {
+          return watchlistAddSuccessMessage;
+        } else {
+          return watchlistRemoveSuccessMessage;
+        }
+      }
+      return 'Failed';
+    });
+
 
     return Stack(
       children: [
@@ -69,9 +89,9 @@ class TvDetailContent extends StatelessWidget {
                             ElevatedButton.icon(
                               key: const Key('watchlist_button'),
                               onPressed: () async {
-                                // _onPressedWatchlistButton(context, message);
+                                _onPressedWatchlistButton(context, message);
                               },
-                              icon: true ? const Icon(Icons.check_rounded) : const Icon(Icons.add_rounded),
+                              icon: isWatchlist ? const Icon(Icons.check_rounded) : const Icon(Icons.add_rounded),
                               label: Text(
                                 'Watchlist',
                                 style: kSubtitle,
@@ -224,6 +244,36 @@ class TvDetailContent extends StatelessWidget {
       },
     );
   }
+
+  void _onPressedWatchlistButton(BuildContext context, message) {
+    if (isWatchlist) {
+      context.read<WatchlistTvSeriesBloc>().add(RemoveWatchlistTvEvent(tvSeriesDetail: tvSeriesDetail));
+    } else {
+      context.read<WatchlistTvSeriesBloc>().add(SaveWatchlistTvEvent(tvSeriesDetail: tvSeriesDetail));
+    }
+
+    if (message == watchlistAddSuccessMessage || message == watchlistRemoveSuccessMessage) {
+      final snackBar = SnackBar(
+        backgroundColor: Colors.grey,
+        behavior: SnackBarBehavior.floating,
+        showCloseIcon: true,
+        content: Text(message),
+      );
+
+      ScaffoldMessenger.of(context)
+        ..removeCurrentSnackBar()
+        ..showSnackBar(snackBar);
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Text(message),
+            );
+          });
+    }
+  }
+
 
   String _showGenres(List<Genre> genres) {
     String result = '';
