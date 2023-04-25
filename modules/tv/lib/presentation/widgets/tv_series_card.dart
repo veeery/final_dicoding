@@ -29,7 +29,7 @@ class TvSeriesCard extends StatelessWidget {
           alignment: isOnCarousel ? Alignment.centerLeft : Alignment.bottomLeft,
           children: [
             Container(
-              height: isOnCarousel ? 35.h : 11.h,
+              height: isOnCarousel ? 35.h : 13.5.h,
               margin: EdgeInsets.symmetric(horizontal: 2.w),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(CurveSize.smallCurve),
