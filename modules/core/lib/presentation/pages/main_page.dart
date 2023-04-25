@@ -1,3 +1,4 @@
+import 'package:about/presentation/about_page.dart';
 import 'package:core/common/responsive.dart';
 import 'package:core/presentation/pages/trending_page.dart';
 import 'package:core/presentation/pages/watchlist_page.dart';
@@ -61,7 +62,7 @@ Widget AppDisplayPage({int index = 0}) {
     case 3:
       return const WatchlistPage();
     case 4:
-      return const WatchlistPage();
+      return const AboutPage();
     default:
       return const MovieHomePage();
   }

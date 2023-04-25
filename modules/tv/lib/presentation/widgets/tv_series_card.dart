@@ -9,8 +9,9 @@ import 'package:tv/presentation/pages/detail_tv_page.dart';
 
 class TvSeriesCard extends StatelessWidget {
   final TvSeries tvSeries;
+  final bool isOnCarousel;
 
-  TvSeriesCard({required this.tvSeries});
+  TvSeriesCard({required this.tvSeries, this.isOnCarousel = false});
 
   @override
   Widget build(BuildContext context) {
@@ -25,32 +26,43 @@ class TvSeriesCard extends StatelessWidget {
           );
         },
         child: Stack(
-          alignment: Alignment.bottomLeft,
+          alignment: isOnCarousel ? Alignment.centerLeft : Alignment.bottomLeft,
           children: [
-            Card(
-              child: Container(
-                margin: const EdgeInsets.only(
-                  left: 16 + 80 + 16,
-                  bottom: 8,
-                  right: 8,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      tvSeries.name ?? '-',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: kHeading6,
+            Container(
+              height: isOnCarousel ? 35.h : 11.h,
+              margin: EdgeInsets.symmetric(horizontal: 2.w),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(CurveSize.smallCurve),
+                color: Colors.white24,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 100.w,
+                    margin: EdgeInsets.only(left: isOnCarousel ? 0 : 30.w, right: isOnCarousel ? 0 : 5.w),
+                    child: Center(
+                      child: Text(
+                        tvSeries.name ?? '-',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.start,
+                        style: kHeading6,
+                      ),
                     ),
-                    SizedBox(height: 3.h),
-                    Text(
+                  ),
+                  SizedBox(height: 2.h),
+                  Container(
+                    width: 100.w,
+                    margin: EdgeInsets.only(left: 29.w),
+                    child: Text(
                       tvSeries.overview ?? '-',
-                      maxLines: 2,
+                      maxLines: isOnCarousel ? 9 : 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                  ],
-                ),
+                  )
+                ],
               ),
             ),
             Container(

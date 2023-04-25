@@ -15,6 +15,8 @@ dependencies:
     path: ../movie
   tv:
     path: ../tv
+  about:
+    path: ../about
 
   carousel_slider:
   google_fonts:

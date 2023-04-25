@@ -30,34 +30,41 @@ class MovieCard extends StatelessWidget {
         child: Stack(
           alignment: isOnCarousel ? Alignment.centerLeft : Alignment.bottomLeft,
           children: [
-            Card(
-              shape: RoundedRectangleBorder(
+            Container(
+              height: isOnCarousel ? 35.h : 11.h,
+              margin: EdgeInsets.symmetric(horizontal: 2.w),
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(CurveSize.smallCurve),
+                color: Colors.white24,
               ),
-              child: Container(
-                height: isOnCarousel ? 20.h : 11.h,
-                margin: EdgeInsets.only(
-                  left: 30.w,
-                  bottom: 1.h,
-                  right: 2.w,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      movie.title ?? '-',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: kHeading6,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 100.w,
+                    margin: EdgeInsets.only(left: isOnCarousel ? 0 : 30.w, right: isOnCarousel ? 0 : 5.w),
+                    child: Center(
+                      child: Text(
+                        movie.title ?? '-',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.start,
+                        style: kHeading6,
+                      ),
                     ),
-                    SizedBox(height: 3.h),
-                    Text(
+                  ),
+                  SizedBox(height: 2.h),
+                  Container(
+                    width: 100.w,
+                    margin: EdgeInsets.only(left: 29.w),
+                    child: Text(
                       movie.overview ?? '-',
-                      maxLines: isOnCarousel ? 5 : 2,
+                      maxLines: isOnCarousel ? 9 : 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                  ],
-                ),
+                  )
+                ],
               ),
             ),
             Container(

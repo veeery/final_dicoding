@@ -1,3 +1,5 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:core/common/responsive.dart';
 import 'package:core/presentation/widgets/app_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +8,7 @@ import 'package:tv/presentation/bloc/top_rated_tv/top_rated_tv_bloc.dart';
 import 'package:tv/presentation/pages/on_the_air_page.dart';
 import 'package:tv/presentation/pages/search_tv_series_page.dart';
 import 'package:tv/presentation/pages/top_rated_tv_page.dart';
+import 'package:tv/presentation/widgets/tv_series_card.dart';
 import 'package:tv/presentation/widgets/tv_series_list.dart';
 
 class TvSeriesHomePage extends StatefulWidget {
@@ -53,7 +56,24 @@ class _TvSeriesHomePageState extends State<TvSeriesHomePage> {
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is OnTheAirLoaded) {
-                    return TvSeriesList(tvSeriesList: state.tvSeriesList);
+                    return CarouselSlider.builder(
+                      itemCount: state.tvSeriesList.length,
+                      options: CarouselOptions(
+                        height: 35.h,
+                        enableInfiniteScroll: false,
+                        autoPlayInterval: const Duration(seconds: 2),
+                        autoPlay: true,
+                      ),
+                      itemBuilder: (context, index, realIndex) {
+                        // return TvSeriesList(tvSeriesList: state.tvSeriesList);
+                        final tvSeries = state.tvSeriesList[index];
+
+                        return TvSeriesCard(
+                          tvSeries: tvSeries,
+                          isOnCarousel: true,
+                        );
+                      },
+                    );
                   } else if (state is OnTheAirError) {
                     return Center(
                       child: Text(state.message),

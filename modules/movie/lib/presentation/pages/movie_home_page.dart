@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:core/common/responsive.dart';
 import 'package:core/presentation/widgets/app_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/now_playing/now_playing_movies_bloc.dart';
-import 'package:movie/presentation/bloc/popular_movies/popular_movies_bloc.dart';
 import 'package:movie/presentation/bloc/top_rated/top_rated_movies_bloc.dart';
 import 'package:movie/presentation/pages/now_playing_movies_page.dart';
 import 'package:movie/presentation/pages/search_movie_page.dart';
@@ -26,9 +26,6 @@ class _MovieHomePageState extends State<MovieHomePage> {
     super.initState();
     Future.microtask(() {
       context.read<NowPlayingMoviesBloc>().add(const FetchNowPlayingMovies());
-    });
-    Future.microtask(() {
-      context.read<PopularMoviesBloc>().add(const FetchPopularMovies());
     });
     Future.microtask(() {
       context.read<TopRatedMoviesBloc>().add(const FetchTopRatedMovies());
@@ -64,6 +61,7 @@ class _MovieHomePageState extends State<MovieHomePage> {
                   return CarouselSlider.builder(
                     itemCount: state.result.length,
                     options: CarouselOptions(
+                      height: 35.h,
                       enableInfiniteScroll: false,
                       autoPlayInterval: const Duration(seconds: 2),
                       autoPlay: true,
@@ -88,6 +86,7 @@ class _MovieHomePageState extends State<MovieHomePage> {
               },
             ),
           ),
+          SizedBox(height: 3.h),
           AppHeading(
             title: 'Top Rated',
             onTap: () => Navigator.pushNamed(context, TopRatedMoviesPage.routeName),

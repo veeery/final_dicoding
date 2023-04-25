@@ -41,6 +41,9 @@ dependencies:
   tv:
     path: modules/tv
 
+  about:
+    path: modules/about
+
 
   cached_network_image:
   dartz:
