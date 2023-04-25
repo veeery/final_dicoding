@@ -98,6 +98,18 @@ void main() {
       verify(mockMovieRemoteDataSource.getNowPlayingMovies());
       expect(result, equals(Left(ConnectionFailure())));
     });
+
+    test('should return connection failure due SSL Failure', () async {
+      // arrange
+      when(mockMovieRemoteDataSource.getNowPlayingMovies())
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getNowPlayingMovies();
+      // assert
+      verify(mockMovieRemoteDataSource.getNowPlayingMovies());
+      expect(result, equals(Left(SSLFailure())));
+    });
+
   });
 
   group('Get Movie Detail', () {
@@ -156,6 +168,17 @@ void main() {
       verify(mockMovieRemoteDataSource.getMovieDetail(id: tId));
       expect(result, equals(Left(ConnectionFailure())));
     });
+
+    test('should return connection failure due SSL Failure', () async {
+      // arrange
+      when(mockMovieRemoteDataSource.getMovieDetail(id: tId))
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getMovieDetail(id: tId);
+      // assert
+      verify(mockMovieRemoteDataSource.getMovieDetail(id: tId));
+      expect(result, equals(Left(SSLFailure())));
+    });
   });
 
   group('Get Movie Recommendation', () {
@@ -194,6 +217,18 @@ void main() {
       verify(mockMovieRemoteDataSource.getMovieRecommendations(id: tId));
       expect(result, equals(Left(ConnectionFailure())));
     });
+
+    test('should return connection failure due SSL Failure', () async {
+      // arrange
+      when(mockMovieRemoteDataSource.getMovieRecommendations(id: tId))
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getMovieRecommendations(id: tId);
+      // assert
+      verify(mockMovieRemoteDataSource.getMovieRecommendations(id: tId));
+      expect(result, equals(Left(SSLFailure())));
+    });
+
   });
 
   group('Popular Movies', () {
@@ -230,6 +265,18 @@ void main() {
       // assert
       expect(result, Left(ConnectionFailure()));
     });
+
+    test('should return connection failure due SSL Failure', () async {
+      // arrange
+      when(mockMovieRemoteDataSource.getPopularMovies())
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getPopularMovies();
+      // assert
+      verify(mockMovieRemoteDataSource.getPopularMovies());
+      expect(result, equals(Left(SSLFailure())));
+    });
+
   });
 
   group('Top Rated Movies', () {
@@ -265,6 +312,18 @@ void main() {
       // assert
       expect(result, Left(ConnectionFailure()));
     });
+
+    test('should return connection failure due SSL Failure', () async {
+      // arrange
+      when(mockMovieRemoteDataSource.getTopRatedMovies())
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getTopRatedMovies();
+      // assert
+      verify(mockMovieRemoteDataSource.getTopRatedMovies());
+      expect(result, equals(Left(SSLFailure())));
+    });
+
   });
 
   group('Search Movies', () {
@@ -301,6 +360,18 @@ void main() {
       // assert
       expect(result, Left(ConnectionFailure()));
     });
+
+    test('should return connection failure due SSL Failure', () async {
+      // arrange
+      when(mockMovieRemoteDataSource.searchMovies(query: tQuery))
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.searchMovies(query: tQuery);
+      // assert
+      verify(mockMovieRemoteDataSource.searchMovies(query: tQuery));
+      expect(result, equals(Left(SSLFailure())));
+    });
+
   });
 
   group('Save watchlist', () {

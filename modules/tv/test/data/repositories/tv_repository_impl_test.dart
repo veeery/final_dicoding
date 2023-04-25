@@ -59,6 +59,18 @@ void main() {
       // assert
       expect(result, equals(Left(ConnectionFailure())));
     });
+
+    test('should return connection failure due SSL Failure', () async {
+      // arrange
+      when(mockRemote.getOnTheAirTvSeries())
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getOnTheAirTvSeries();
+      // assert
+      verify(mockRemote.getOnTheAirTvSeries());
+      expect(result, equals(Left(SSLFailure())));
+    });
+
   });
 
   group('Get TopRated TV Series', () {
@@ -91,6 +103,18 @@ void main() {
       // assert
       expect(result, equals(Left(ConnectionFailure())));
     });
+
+    test('should return connection failure due SSL Failure', () async {
+      // arrange
+      when(mockRemote.getTopRatedTvSeries())
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getTopRatedTvSeries();
+      // assert
+      verify(mockRemote.getTopRatedTvSeries());
+      expect(result, equals(Left(SSLFailure())));
+    });
+
   });
 
   group('Get Popular TV Series', () {
@@ -123,6 +147,18 @@ void main() {
       // assert
       expect(result, equals(Left(ConnectionFailure())));
     });
+
+    test('should return connection failure due SSL Failure', () async {
+      // arrange
+      when(mockRemote.getPopularTvSeries())
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getPopularTvSeries();
+      // assert
+      verify(mockRemote.getPopularTvSeries());
+      expect(result, equals(Left(SSLFailure())));
+    });
+
   });
 
   group('Get Recommendation TV Series', () {
@@ -158,6 +194,18 @@ void main() {
       // assert
       expect(result, equals(Left(ConnectionFailure())));
     });
+
+    test('should return connection failure due SSL Failure', () async {
+      // arrange
+      when(mockRemote.getRecommendationTvSeries(id: tId))
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getRecommendationTvSeries(id: tId);
+      // assert
+      verify(mockRemote.getRecommendationTvSeries(id: tId));
+      expect(result, equals(Left(SSLFailure())));
+    });
+
   });
 
   group('Search TV Series', () {
@@ -193,6 +241,18 @@ void main() {
       // assert
       expect(result, equals(Left(ConnectionFailure())));
     });
+
+    test('should return connection failure due SSL Failure', () async {
+      // arrange
+      when(mockRemote.searchTvSeries(query: tQuery))
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.searchTvSeries(query: tQuery);
+      // assert
+      verify(mockRemote.searchTvSeries(query: tQuery));
+      expect(result, equals(Left(SSLFailure())));
+    });
+
   });
 
   group('Get Detail TV Series', () {
@@ -226,6 +286,18 @@ void main() {
       // assert
       expect(result, equals(Left(ConnectionFailure())));
     });
+
+    test('should return connection failure due SSL Failure', () async {
+      // arrange
+      when(mockRemote.getTvSeriesDetail(id: tId))
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getTvSeriesDetail(id: tId);
+      // assert
+      verify(mockRemote.getTvSeriesDetail(id: tId));
+      expect(result, equals(Left(SSLFailure())));
+    });
+
   });
 
   group('Get Season Detail TV Series', () {
@@ -262,6 +334,18 @@ void main() {
       // assert
       expect(result, equals(Left(ConnectionFailure())));
     });
+
+    test('should return connection failure due SSL Failure', () async {
+      // arrange
+      when(mockRemote.getSeasonDetail(id: tId, seasonNumber: tSeasonNumber))
+          .thenThrow(const TlsException());
+      // act
+      final result = await repository.getSeasonDetail(id: tId, seasonNumber: tSeasonNumber);
+      // assert
+      verify(mockRemote.getSeasonDetail(id: tId, seasonNumber: tSeasonNumber));
+      expect(result, equals(Left(SSLFailure())));
+    });
+
   });
 
   group('Save Watchlist TV Series', () {

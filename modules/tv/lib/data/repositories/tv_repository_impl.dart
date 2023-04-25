@@ -29,6 +29,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure());
     } on SocketException {
       return Left(ConnectionFailure());
+    } on TlsException {
+      return Left(SSLFailure());
     }
   }
 
@@ -41,6 +43,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure());
     } on SocketException {
       return Left(ConnectionFailure());
+    } on TlsException {
+      return Left(SSLFailure());
     }
   }
 
@@ -53,6 +57,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure());
     } on SocketException {
       return Left(ConnectionFailure());
+    } on TlsException {
+      return Left(SSLFailure());
     }
   }
 
@@ -65,6 +71,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure());
     } on SocketException {
       return Left(ConnectionFailure());
+    } on TlsException {
+      return Left(SSLFailure());
     }
   }
 
@@ -77,6 +85,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure());
     } on SocketException {
       return Left(ConnectionFailure());
+    } on TlsException {
+      return Left(SSLFailure());
     }
   }
 
@@ -89,6 +99,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure());
     } on SocketException {
       return Left(ConnectionFailure());
+    } on TlsException {
+      return Left(SSLFailure());
     }
   }
 
@@ -101,6 +113,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure());
     } on SocketException {
       return Left(ConnectionFailure());
+    } on TlsException {
+      return Left(SSLFailure());
     }
   }
 
